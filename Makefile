@@ -16,7 +16,6 @@ AUTEUR =		"conoel"
 SRC_NAME =		main.c\
 				set_term_mode.c\
 				read_key.c\
-				args.c\
 				tab_utils.c
 
 SRC_DIR =		./src/

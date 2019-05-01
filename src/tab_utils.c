@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 18:51:24 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/01 19:17:39 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/01 20:20:55 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,27 +47,6 @@ char			**realloc_tabl_remove_index(char **tabl, size_t index)
 	return (ret);
 }
 
-char			**realloc_tabl_add_var(char **tabl, char *new)
-{
-	char	**ret;
-	size_t	size;
-	size_t	i;
-
-	size = tabl_size(tabl);
-	if (!(ret = malloc(sizeof(char *) * (size + 2))))
-		return (NULL);
-	ret[size + 1] = NULL;
-	i = 0;
-	while (tabl && i < size)
-	{
-		ret[i] = ft_strdup(tabl[i]);
-		i++;
-	}
-	ret[i] = new;
-	free_tab(tabl);
-	return (ret);
-}
-
 char			**copy_tabl(size_t size, char **tabl)
 {
 	char	**ret;
@@ -83,4 +62,30 @@ char			**copy_tabl(size_t size, char **tabl)
 		i++;
 	}
 	return (ret);
+}
+
+int					get_longer(char **tabl)
+{
+	int	i;
+	size_t max;
+
+	i = 0;
+	max = 0;
+	while (tabl[i])
+	{
+		if (ft_strlen(tabl[i]) > max)
+			max = ft_strlen(tabl[i]);
+		i++;
+	}
+	return (max);
+}
+
+int						tab_len(char **tabl)
+{
+	int	i;
+
+	i = 0;
+	while (tabl[i])
+		i++;
+	return (i);
 }
