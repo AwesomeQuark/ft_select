@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:33:03 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/01 20:12:56 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/01 20:56:14 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	init_term(t_term *term)
 		return (0);
 	if (tgetent(NULL, getenv("TERM")) < 1)
 		return (0);
-	if (tcgetattr(term->fd, &(term->term)) == -1)
+	if (tcgetattr(term->fd, &(g_term_mem)) == -1)
 		return (0);
-	if (tcgetattr(term->fd, &(term->term_mem)) == -1)
+	if (tcgetattr(term->fd, &(term->term)) == -1)
 		return (0);
 	term->term.c_lflag &= ~(ICANON);
 	term->term.c_lflag &= ~(ECHO);
@@ -28,5 +28,6 @@ int	init_term(t_term *term)
 	term->term.c_cc[VTIME] = 0;
 	if (tcsetattr(term->fd, 0, &(term->term)) == -1)
 		return (return_("tcsetattr"));
+	tputs(tgetstr("vi", NULL), 0, ft_putchar);
 	return (1);
 }

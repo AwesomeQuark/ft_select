@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:37:01 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/01 20:23:55 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/01 20:51:18 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static void	display(char **choices, t_infos *infos)
 		else
 			ft_printf("%-*s\n", infos->max_len, choices[i++]);
 	}
-	ft_printf("%d %d", infos->x, infos->y);
+	//ft_printf("%d %d", infos->x, infos->y);
 }
 
-int		read_key(char **args)
+int			read_key(char **args)
 {
 	char		buff[3];
 	t_infos		infos;
@@ -42,14 +42,21 @@ int		read_key(char **args)
 	infos.max_len = get_longer(args);
 	while (1)
 	{
+		display(args, &infos);
 		ft_bzero(buff, 3);
 		read(0, buff, 3);
 		if (buff[0] == 12 && buff[1] == 10)
 			tputs(tgetstr("cl", NULL), 0, ft_putchar);
 		if (buff[0] == 27 && buff[1] == 0)
-			return (1);
+			signal_handler(1);
 		if (buff[0] == 127 && buff[1] == 0)
+		{
+			if (tab_len(args) == 1)
+				return (1);
+			if (infos.y == tab_len(args) - 1)
+				infos.y --;
 			args = realloc_tabl_remove_index(args, infos.y);
+		}
 		if (buff[0] == 27 && buff[1] == 91 && buff[2] == 65 && infos.y > 0)
 			infos.y--;
 		if (buff[0] == 27 && buff[1] == 91 && buff[2] == 66 && infos.y < infos.max_y)
@@ -58,8 +65,7 @@ int		read_key(char **args)
 			infos.x--;
 		if (buff[0] == 27 && buff[1] == 91 && buff[2] == 67 && infos.x < infos.max_x)
 			infos.x++;
-		display(args, &infos);
-		printf("%d %d %d\n", buff[0], buff[1], buff[2]);
+		//printf("%d %d %d\n", buff[0], buff[1], buff[2]);
 	}
 	return (0);
 }
