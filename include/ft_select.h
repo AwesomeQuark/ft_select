@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:38:21 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 17:07:11 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 18:29:46 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@
 # include <sys/ioctl.h>
 # include "haflib.h"
 
+struct termios	g_term_mem;
+int				g_fd;
+
 typedef struct	s_term
 {
 	char			*name;
 	struct termios	term;
-	int				fd;
 }				t_term;
 
 typedef struct	s_infos
@@ -48,7 +50,6 @@ typedef struct	s_handlers
 
 int				ft_putchar_stdout(int c);
 void			end(int no);
-struct termios	*get_termmem(struct termios *term_mem);
 
 int				init_term(t_term *term);
 void 			init_infos(t_infos *infos, char **args, int mode);

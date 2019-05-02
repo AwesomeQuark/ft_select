@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:33:03 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 17:19:52 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 18:53:20 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,19 @@
 
 int		init_term(t_term *term)
 {
-	struct	termios	*term_mem;
-
-	if (!(term_mem = malloc(sizeof(struct termios))))
-		end(0);
-	if ((term->fd = open(ttyname(0), O_RDWR)) == -1)
+	if ((g_fd = open(ttyname(0), O_RDWR)) == -1)
 		return (0);
 	if (tgetent(NULL, getenv("TERM")) < 1)
 		return (0);
-	if (tcgetattr(term->fd, term_mem) == -1)
+	if (tcgetattr(g_fd, &g_term_mem) == -1)
 		return (0);
-	get_termmem(term_mem);
-	if (tcgetattr(term->fd, &(term->term)) == -1)
+	if (tcgetattr(g_fd, &(term->term)) == -1)
 		return (0);
 	term->term.c_lflag &= ~(ICANON);
 	term->term.c_lflag &= ~(ECHO);
 	term->term.c_cc[VMIN] = 1;
 	term->term.c_cc[VTIME] = 0;
-	if (tcsetattr(term->fd, 0, &(term->term)) == -1)
-		return (return_("tcsetattr"));
+	tcsetattr(g_fd, TCSANOW, &(term->term));
 	tputs(tgetstr("vi", NULL), 1, ft_putchar_stdout);
 	return (1);
 }
