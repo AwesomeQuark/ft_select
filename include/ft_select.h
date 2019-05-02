@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:38:21 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 11:01:28 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 11:14:40 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,7 @@ void	handle_up(char ***args, t_infos *infos);
 int		test_up(char *buff, t_infos *infos);
 void	handle_del(char ***args, t_infos *infos);
 int		test_del(char *buff, t_infos *infos);
+void	handle_escape(char ***args, t_infos *infos);
+int		test_escape(char *buff, t_infos *infos);
 
 #endif

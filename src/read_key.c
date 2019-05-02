@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:37:01 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 11:01:16 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 11:15:03 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static t_handlers g_handlers[] =
 	{test_down, handle_down},
 	{test_up, handle_up},
 	{test_del, handle_del},
+	{test_escape, handle_escape},
 	{NULL, NULL}
 };
 
@@ -35,8 +36,6 @@ int			read_key(char **args)
 		display(args, &infos);
 		ft_bzero(buff, 3);
 		read(0, buff, 3);
-		if (buff[0] == 12 && buff[1] == 10)
-			tputs(tgetstr("cl", NULL), 0, ft_putchar);
 		if (buff[0] == 27 && buff[1] == 0)
 			end(1);
 		while (g_handlers[i].test != NULL)
@@ -45,7 +44,6 @@ int			read_key(char **args)
 				g_handlers[i].handler(&args, &infos);
 			i++;
 		}
-		//printf("%d %d %d\n", buff[0], buff[1], buff[2]);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:30:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 11:03:52 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 11:19:37 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,16 @@ void handle_del(char ***args, t_infos *infos)
 {
 	if (tab_len(*args) == 1)
 		end(1);
-	if (infos->current_index == infos->nb_args)
-		infos->y--;
+	if (infos->current_index == infos->nb_args - 1)
+	{
+		if (infos->x != 0)
+			infos->x--;
+		else
+		{
+			infos->x = infos->max_x - 1;
+			infos->y--;
+		}
+	}
 	*args = realloc_tabl_remove_index(*args, infos->y);
 	init_infos(infos, *args, 0);
 }

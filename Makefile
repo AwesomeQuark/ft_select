@@ -19,7 +19,9 @@ SRC_NAME =		main.c\
 				tab_utils.c\
 				display.c\
 				handlers.c\
+				handlers2.c\
 				tests.c\
+				tests2.c
 
 SRC_DIR =		./src/
 SRC =			${addprefix $(SRC_DIR), $(SRC_NAME)}
