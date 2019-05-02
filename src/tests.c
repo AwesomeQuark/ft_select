@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:45:34 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 12:01:39 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 17:36:41 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int test_left(char *buff, t_infos *infos)
 {
-	if (buff[0] == 27 && buff[1] == 91 && buff[2] == 68 && (infos->x > 0
-	|| infos->y > 0))
+	infos = NULL;
+	if (buff[0] == 27 && buff[1] == 91 && buff[2] == 68)
 		return (1);
 	else
 		return (0);
@@ -23,8 +23,8 @@ int test_left(char *buff, t_infos *infos)
 
 int test_right(char *buff, t_infos *infos)
 {
-	if (buff[0] == 27 && buff[1] == 91 && buff[2] == 67 && infos->current_index
-	+ 1 < infos->nb_args)
+	infos = NULL;
+	if (buff[0] == 27 && buff[1] == 91 && buff[2] == 67)
 		return (1);
 	else
 		return (0);

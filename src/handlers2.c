@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:12:09 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 17:04:25 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 17:31:45 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ void handle_space(char ***args, t_infos *infos)
 	args = NULL;
 	infos->selected[infos->current_index]
 	= !infos->selected[infos->current_index];
+	if (infos->x != infos->max_x && infos->current_index != infos->nb_args - 1)
+		infos->x++;
+	else if (infos->current_index != infos->nb_args - 1)
+	{
+		infos->y++;
+		infos->x = 0;
+	}
+	else
+	{
+		infos->x = 0;
+		infos->y = 0;
+	}
 }
 
 void handle_enter(char ***args, t_infos *infos)
