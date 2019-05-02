@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:33:03 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 13:43:48 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 17:19:52 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		init_term(t_term *term)
 	term->term.c_cc[VTIME] = 0;
 	if (tcsetattr(term->fd, 0, &(term->term)) == -1)
 		return (return_("tcsetattr"));
-	tputs(tgetstr("vi", NULL), 0, ft_putchar);
+	tputs(tgetstr("vi", NULL), 1, ft_putchar_stdout);
 	return (1);
 }
 
@@ -46,12 +46,17 @@ void	init_infos(t_infos *infos, char **args, int mode)
 	infos->max_x = w.ws_col / infos->max_len;
 	infos->nb_args = tab_len(args);
 	infos->max_y = infos->nb_args / infos->max_x;
+	infos->current_index = infos->x + (infos->y * infos->max_x);
 	if (mode)
 	{
+		infos->original_x = 0;//wherex();
+		infos->original_y = 0;//wherey();
 		infos->x = 0;
 		infos->y = 0;
 		if (!(infos->selected = malloc(sizeof(int) * tab_len(args))))
 			end(1);
 		ft_bzero(infos->selected, sizeof(int) * tab_len(args));
 	}
+	while (w.ws_row <= infos->max_y)
+		ioctl(0, TIOCGWINSZ, &w);
 }

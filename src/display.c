@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 14:29:02 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 17:21:18 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,24 @@ void display(char **choices, t_infos *infos)
 	int i;
 
 	i = 0;
-	infos->current_index = infos->x + (infos->y * infos->max_x);
-	tputs(tgetstr("cl", NULL), 0, ft_putchar);
+	init_infos(infos, choices, 0);
+	tputs(tgetstr("cl", NULL), 1, ft_putchar_stdout);
+	tputs(tgoto(tgetstr("cm", NULL), infos->original_x, infos->original_y),
+		  1, ft_putchar_stdout);
 	while (choices[i])
 	{
 		if (infos->selected[i] == 1 && i == infos->current_index)
-			ft_printf("\033[7m\033[4m%-*s\033[0m", infos->max_len,
+			dprintf(0, "\033[7m\033[4m%-*s\033[0m", infos->max_len,
 					  choices[i++]);
 		else if (infos->selected[i] == 1)
-			ft_printf("\033[7m%-*s\033[0m", infos->max_len,
+			dprintf(0, "\033[7m%-*s\033[0m", infos->max_len,
 						choices[i++]);
 		else if (i == infos->current_index)
-			ft_printf("\033[4m%-*s\033[0m", infos->max_len,
+			dprintf(0, "\033[4m%-*s\033[0m", infos->max_len,
 						choices[i++]);
 		else
-			ft_printf("%-*s", infos->max_len, choices[i++]);
+			dprintf(0, "%-*s", infos->max_len, choices[i++]);
 		if (i % infos->max_x == 0)
-			write(1, "\n", 1);
+			write(0, "\n", 1);
 	}
-	ft_printf("|-| x %d y %d |-| tot %d |-|\n", infos->x, infos->y, infos->current_index);
 }

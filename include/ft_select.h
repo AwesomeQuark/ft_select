@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:38:21 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 14:23:31 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 17:07:11 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct	s_term
 
 typedef struct	s_infos
 {
+	int	original_x;
+	int	original_y;
 	int	*selected;
 	int	x;
 	int	y;
@@ -44,36 +46,36 @@ typedef struct	s_handlers
 	void	(*handler)(char ***args, t_infos *infos);
 }				t_handlers;
 
-int		ft_putchar(int c);
-void	end(int no);
-struct termios *get_termmem(struct termios *term_mem);
+int				ft_putchar_stdout(int c);
+void			end(int no);
+struct termios	*get_termmem(struct termios *term_mem);
 
-int		init_term(t_term *term);
-void 	init_infos(t_infos *infos, char **args, int mode);
-int 	read_key(char **args);
-void	display(char **choices, t_infos *infos);
+int				init_term(t_term *term);
+void 			init_infos(t_infos *infos, char **args, int mode);
+int 			read_key(char **args);
+void			display(char **choices, t_infos *infos);
 
-char	**copy_tabl(size_t size, char **tabl);
-int		*realloc_int_tab(size_t remove_index, int *tabl, size_t size);
-char	**realloc_tabl_remove_index(char **tabl, size_t index);
-int		get_longer(char **tabl);
-int		tab_len(char **tabl);
+char			**copy_tabl(size_t size, char **tabl);
+int				*realloc_int_tab(size_t remove_index, int *tabl, size_t size);
+char			**realloc_tabl_remove_index(char **tabl, size_t index);
+int				get_longer(char **tabl);
+int				tab_len(char **tabl);
 
-void	handle_left(char ***args, t_infos *infos);
-int		test_left(char *buff, t_infos *infos);
-void	handle_right(char ***args, t_infos *infos);
-int		test_right(char *buff, t_infos *infos);
-void	handle_down(char ***args, t_infos *infos);
-int		test_down(char *buff, t_infos *infos);
-void	handle_up(char ***args, t_infos *infos);
-int		test_up(char *buff, t_infos *infos);
-void	handle_del(char ***args, t_infos *infos);
-int		test_del(char *buff, t_infos *infos);
-void	handle_escape(char ***args, t_infos *infos);
-int		test_escape(char *buff, t_infos *infos);
-int test_space(char *buff, t_infos *infos);
-void handle_space(char ***args, t_infos *infos);
-int test_enter(char *buff, t_infos *infos);
-void handle_enter(char ***args, t_infos *infos);
+void			handle_left(char ***args, t_infos *infos);
+int				test_left(char *buff, t_infos *infos);
+void			handle_right(char ***args, t_infos *infos);
+int				test_right(char *buff, t_infos *infos);
+void			handle_down(char ***args, t_infos *infos);
+int				test_down(char *buff, t_infos *infos);
+void			handle_up(char ***args, t_infos *infos);
+int				test_up(char *buff, t_infos *infos);
+void			handle_del(char ***args, t_infos *infos);
+int				test_del(char *buff, t_infos *infos);
+void			handle_escape(char ***args, t_infos *infos);
+int				test_escape(char *buff, t_infos *infos);
+int				test_space(char *buff, t_infos *infos);
+void			handle_space(char ***args, t_infos *infos);
+int				test_enter(char *buff, t_infos *infos);
+void			handle_enter(char ***args, t_infos *infos);
 
 #endif

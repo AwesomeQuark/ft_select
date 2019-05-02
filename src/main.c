@@ -6,11 +6,17 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:35:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 13:50:39 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 17:22:00 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+int		ft_putchar_stdout(int c)
+{
+	write(0, &c, 1);
+	return (0);
+}
 
 struct termios	*get_termmem(struct termios *term_mem)
 {
@@ -32,8 +38,8 @@ void					end(int no)
 	
 	no = 0;
 	term_mem = get_termmem(NULL);
-	tputs(tgetstr("cl", NULL), 0, ft_putchar);
-	fd = open(ttyname(0), O_RDWR);
+	tputs(tgetstr("cl", NULL), 1, ft_putchar_stdout);
+	fd = open(ttyname(1), O_RDWR);
 	tcsetattr(fd, 0, term_mem);
 	exit(1);
 }
@@ -56,4 +62,5 @@ int						main(int argc, char **argv)
 	args = copy_tabl(argc + 1, argv);
 	args = realloc_tabl_remove_index(args, 0);
 	read_key(args);
+	return (0);
 }
