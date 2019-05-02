@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 11:19:42 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 12:01:01 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void display(char **choices, t_infos *infos)
 		if (i % infos->max_x == 0)
 			write(1, "\n", 1);
 	}
-	//ft_printf("|-| y %d x %d |-| tot %d |-|\n", infos->x, infos->y, infos->current_index);
+	ft_printf("|-| x %d y %d |-| tot %d |-|\n", infos->x, infos->y, infos->current_index);
 }

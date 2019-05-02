@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:45:34 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 10:59:48 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 12:01:39 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int test_right(char *buff, t_infos *infos)
 		return (0);
 }
 
-int test_down(char *buff, t_infos *infos)
+int test_up(char *buff, t_infos *infos)
 {
 	if (buff[0] == 27 && buff[1] == 91 && buff[2] == 65 && (infos->y > 0
 	|| infos->x > 0))
@@ -39,7 +39,7 @@ int test_down(char *buff, t_infos *infos)
 		return (0);
 }
 
-int test_up(char *buff, t_infos *infos)
+int test_down(char *buff, t_infos *infos)
 {
 	if (buff[0] == 27 && buff[1] == 91 && buff[2] == 66 && (infos->y
 	< infos->max_y || infos->x < infos->max_x - 1))

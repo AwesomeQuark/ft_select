@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:30:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 11:19:37 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 12:03:58 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void handle_right(char ***args, t_infos *infos)
 		infos->x++;
 }
 
-void	handle_down(char ***args, t_infos *infos)
+void	handle_up(char ***args, t_infos *infos)
 {
 	args = NULL;
 	if (infos->y == 0)
@@ -48,7 +48,7 @@ void	handle_down(char ***args, t_infos *infos)
 		infos->y--;
 }
 
-void	handle_up(char ***args, t_infos *infos)
+void	handle_down(char ***args, t_infos *infos)
 {
 	args = NULL;
 	if (infos->y == infos->max_y)
