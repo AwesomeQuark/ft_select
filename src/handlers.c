@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:30:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 17:45:48 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 18:06:20 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void handle_left(char ***args, t_infos *infos)
 	}
 	else
 	{
-		infos->x = infos->nb_args % infos->max_x;
+		infos->x = infos->nb_args % infos->max_x - 1;
 		infos->y = infos->max_y;
 	}
 }
@@ -49,29 +49,37 @@ void handle_right(char ***args, t_infos *infos)
 void	handle_up(char ***args, t_infos *infos)
 {
 	args = NULL;
-	if (infos->y == 0)
+	if (infos->y != 0)
+		infos->y--;
+	else if (infos->x != 0)
 	{
-		infos->y = infos->max_y;
+		if (infos->nb_args % infos->max_x < infos->x)
+			infos->y = infos->max_y - 1;
+		else
+			infos->y = infos->max_y;
 		infos->x--;
 	}
 	else
-		infos->y--;
+	{
+		infos->x = infos->nb_args % infos->max_x - 1;
+		infos->y = infos->max_y;
+	}
 }
 
 void	handle_down(char ***args, t_infos *infos)
 {
 	args = NULL;
-	if (infos->y == infos->max_y)
-	{
-		infos->x++;
-		infos->y = 0;
-	}
-	else if (infos->current_index + infos->max_x < infos->nb_args)
+	if (infos->y != infos->max_y && !(infos->y == infos->max_y - 1 && infos->x >= infos->nb_args % infos->max_x))
 		infos->y++;
-	else if (infos->current_index == infos->nb_args)
+	else if (infos->x != infos->max_x)
+	{
+		infos->y = 0;
+		infos->x++;
+	}
+	else
 	{
 		infos->x = 0;
-		infos->y = 0;
+		infos->y = infos->max_y;
 	}
 }
 
