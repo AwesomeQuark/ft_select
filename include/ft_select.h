@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:38:21 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 11:14:40 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 14:23:31 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <unistd.h>
 # include <sys/ioctl.h>
 # include "haflib.h"
-
-struct termios	g_term_mem;
 
 typedef struct	s_term
 {
@@ -48,6 +46,7 @@ typedef struct	s_handlers
 
 int		ft_putchar(int c);
 void	end(int no);
+struct termios *get_termmem(struct termios *term_mem);
 
 int		init_term(t_term *term);
 void 	init_infos(t_infos *infos, char **args, int mode);
@@ -55,6 +54,7 @@ int 	read_key(char **args);
 void	display(char **choices, t_infos *infos);
 
 char	**copy_tabl(size_t size, char **tabl);
+int		*realloc_int_tab(size_t remove_index, int *tabl, size_t size);
 char	**realloc_tabl_remove_index(char **tabl, size_t index);
 int		get_longer(char **tabl);
 int		tab_len(char **tabl);
@@ -71,5 +71,9 @@ void	handle_del(char ***args, t_infos *infos);
 int		test_del(char *buff, t_infos *infos);
 void	handle_escape(char ***args, t_infos *infos);
 int		test_escape(char *buff, t_infos *infos);
+int test_space(char *buff, t_infos *infos);
+void handle_space(char ***args, t_infos *infos);
+int test_enter(char *buff, t_infos *infos);
+void handle_enter(char ***args, t_infos *infos);
 
 #endif

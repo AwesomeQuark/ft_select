@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:30:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 12:03:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 14:13:44 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void handle_del(char ***args, t_infos *infos)
 			infos->y--;
 		}
 	}
-	*args = realloc_tabl_remove_index(*args, infos->y);
+	infos->selected = realloc_int_tab(infos->current_index, infos->selected, 		infos->nb_args);
+	*args = realloc_tabl_remove_index(*args, infos->current_index);
 	init_infos(infos, *args, 0);
 }

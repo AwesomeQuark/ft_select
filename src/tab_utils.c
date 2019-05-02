@@ -6,18 +6,18 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 18:51:24 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/01 20:20:55 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 14:13:59 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-static size_t	tabl_size(char **tabl)
+int				tab_len(char **tabl)
 {
-	size_t	i;
+	int i;
 
 	i = 0;
-	while (tabl && tabl[i])
+	while (tabl[i])
 		i++;
 	return (i);
 }
@@ -29,7 +29,7 @@ char			**realloc_tabl_remove_index(char **tabl, size_t index)
 	size_t	i;
 	size_t	j;
 
-	size = tabl_size(tabl);
+	size = tab_len(tabl);
 	if (!(ret = malloc(sizeof(char *) * size)))
 		return (0);
 	ret[size - 1] = NULL;
@@ -64,7 +64,7 @@ char			**copy_tabl(size_t size, char **tabl)
 	return (ret);
 }
 
-int					get_longer(char **tabl)
+int				get_longer(char **tabl)
 {
 	int	i;
 	size_t max;
@@ -80,12 +80,25 @@ int					get_longer(char **tabl)
 	return (max);
 }
 
-int						tab_len(char **tabl)
+int					*realloc_int_tab(size_t remove_index, int *tabl,
+size_t size)
 {
-	int	i;
+	int	*new;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (tabl[i])
+	j = 0;
+	if (!(new = malloc(sizeof(int) * size)))
+		end(0);
+	while (i < size)
+	{
+		if (i == remove_index)
+			i++;
+		new[j] = tabl[i];
 		i++;
-	return (i);
+		j++;
+	}
+	free(tabl);
+	return (new);
 }

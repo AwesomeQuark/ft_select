@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 12:40:55 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 14:29:02 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,15 @@ void display(char **choices, t_infos *infos)
 	tputs(tgetstr("cl", NULL), 0, ft_putchar);
 	while (choices[i])
 	{
-		if (i == infos->current_index)
-			ft_printf("\033[41m\033[30m%-*s\033[0m", infos->max_len,
+		if (infos->selected[i] == 1 && i == infos->current_index)
+			ft_printf("\033[7m\033[4m%-*s\033[0m", infos->max_len,
 					  choices[i++]);
+		else if (infos->selected[i] == 1)
+			ft_printf("\033[7m%-*s\033[0m", infos->max_len,
+						choices[i++]);
+		else if (i == infos->current_index)
+			ft_printf("\033[4m%-*s\033[0m", infos->max_len,
+						choices[i++]);
 		else
 			ft_printf("%-*s", infos->max_len, choices[i++]);
 		if (i % infos->max_x == 0)
