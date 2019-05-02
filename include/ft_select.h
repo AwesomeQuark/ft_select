@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:38:21 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/01 21:05:56 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 11:01:28 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,39 @@ typedef struct	s_infos
 	int	y;
 	int	max_x;
 	int	max_y;
-	int	nb_col;
-	int	nb_lin;
 	int	max_len;
+	int	current_index;
+	int	nb_args;
 }				t_infos;
 
+typedef struct	s_handlers
+{
+	int		(*test)(char *buff, t_infos *infos);
+	void	(*handler)(char ***args, t_infos *infos);
+}				t_handlers;
+
 int		ft_putchar(int c);
-void	signal_handler(int no);
+void	end(int no);
 
 int		init_term(t_term *term);
-int		read_key(char **args);
+void 	init_infos(t_infos *infos, char **args, int mode);
+int 	read_key(char **args);
+void	display(char **choices, t_infos *infos);
 
 char	**copy_tabl(size_t size, char **tabl);
 char	**realloc_tabl_remove_index(char **tabl, size_t index);
 int		get_longer(char **tabl);
 int		tab_len(char **tabl);
+
+void	handle_left(char ***args, t_infos *infos);
+int		test_left(char *buff, t_infos *infos);
+void	handle_right(char ***args, t_infos *infos);
+int		test_right(char *buff, t_infos *infos);
+void	handle_down(char ***args, t_infos *infos);
+int		test_down(char *buff, t_infos *infos);
+void	handle_up(char ***args, t_infos *infos);
+int		test_up(char *buff, t_infos *infos);
+void	handle_del(char ***args, t_infos *infos);
+int		test_del(char *buff, t_infos *infos);
 
 #endif

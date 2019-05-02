@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/01 12:35:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 10:58:21 by conoel           ###   ########.fr       */
+/*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
+/*   Updated: 2019/05/02 11:04:18 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	end(int no)
+void display(char **choices, t_infos *infos)
 {
-	int	fd;
-	
-	no = 0;
-	fd = open(ttyname(0), O_RDWR);
+	int i;
+
+	i = 0;
+	infos->current_index = infos->x + (infos->y * infos->max_x);
 	tputs(tgetstr("cl", NULL), 0, ft_putchar);
-	tcsetattr(fd, 0, &(g_term_mem));
-	exit(1);
-}
-
-int		main(int argc, char **argv)
-{
-	t_term 	term;
-	char **args;
-
-	signal(SIGINT, end);
-	if (!init_term(&term))
-		return (0);
-	args = copy_tabl(argc + 1, argv);
-	args = realloc_tabl_remove_index(args, 0);
-	read_key(args);
-	tcsetattr(term.fd, 0, &(g_term_mem));
+	while (choices[i])
+	{
+		if (i == infos->current_index)
+			ft_printf("\033[41m\033[30m%-*s\033[0m", infos->max_len,
+					  choices[i++]);
+		else
+			ft_printf("%-*s", infos->max_len, choices[i++]);
+		if (i % infos->max_x == 0)
+			write(1, "\n", 1);
+	}
+	ft_printf("%d %d", infos->x, infos->y);
 }

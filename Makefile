@@ -14,9 +14,12 @@ NAME =			ft_select
 AUTEUR =		"conoel"
 
 SRC_NAME =		main.c\
-				set_term_mode.c\
+				init.c\
 				read_key.c\
-				tab_utils.c
+				tab_utils.c\
+				display.c\
+				handlers.c\
+				tests.c\
 
 SRC_DIR =		./src/
 SRC =			${addprefix $(SRC_DIR), $(SRC_NAME)}
@@ -34,7 +37,7 @@ LIB_DIR =		./libft/
 LIB_HEADER =	./libft/includes/
 LIB =			${addprefix $(LIB_DIR), $(LIB_NAME)}
 
-FLAGS =			-Wall -Werror -Wextra -O0 -g3 -fsanitize=address
+FLAGS =			-Wall -Werror -Wextra -O0 -g3 #-fsanitize=address
 CC =			clang
 
 #################################################################################
