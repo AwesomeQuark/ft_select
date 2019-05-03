@@ -6,13 +6,13 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/03 17:40:44 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 17:59:36 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-static void	put_x_space(int x)
+static void		put_x_space(int x)
 {
 	char *str;
 
@@ -23,7 +23,7 @@ static void	put_x_space(int x)
 	free(str);
 }
 
-static void beauty(char **choices, t_infos *infos)
+static void		beauty(char **choices, t_infos *infos)
 {
 	int i;
 
@@ -38,23 +38,18 @@ static void beauty(char **choices, t_infos *infos)
 			ft_putstr_fd("\033[31m<", 0);
 		ft_putstr_fd(choices[i], 0);
 		if (i == infos->current_index)
-		{
 			write(0, ">", 1);
-			ft_putstr_fd("\033[0m", 0);
+		ft_putstr_fd("\033[0m", 0);
+		if (i == infos->current_index)
 			put_x_space(infos->max_len - (ft_strlen(choices[i]) + 2));
-		}
 		else
-		{
-			ft_putstr_fd("\033[0m", 0);
 			put_x_space(infos->max_len - ft_strlen(choices[i]));
-		}
-		i++;
-		if (i % infos->max_x == 0)
+		if (i++ % infos->max_x == 0)
 			write(0, "\n", 1);
 	}
 }
 
-static void classic(char **choices, t_infos *infos)
+static void		classic(char **choices, t_infos *infos)
 {
 	int i;
 
@@ -76,7 +71,7 @@ static void classic(char **choices, t_infos *infos)
 	}
 }
 
-void	display(char **choices, t_infos *infos, int visual)
+void			display(char **choices, t_infos *infos, int visual)
 {
 	init_infos(infos, choices, 0);
 	tputs(tgetstr("cl", NULL), 1, ft_putchar_stdout);

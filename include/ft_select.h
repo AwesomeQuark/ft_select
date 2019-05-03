@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:38:21 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/03 16:45:26 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 17:54:35 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int				ft_putchar_stdout(int c);
 void			end(int no);
 
 int				init_term(t_term *term);
-void 			init_infos(t_infos *infos, char **args, int mode);
-int 			read_key(char **args, int visual);
+void			init_infos(t_infos *infos, char **args, int mode);
+int				read_key(char **args, int visual);
 void			display(char **choices, t_infos *infos, int visual);
 
 char			**copy_tabl(size_t size, char **tabl);

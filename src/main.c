@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:35:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/03 16:52:05 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 17:58:54 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,14 @@ int		main(int argc, char **argv)
 	signal(SIGINT, end);
 	if (!init_term(&term))
 		return (0);
+	visual = 0;
 	if (ft_strcmp(argv[1], "-v") == 0)
 	{
 		visual = 1;
 		args = copy_tabl(argc + 1, &argv[2]);
 	}
 	else
-	{
-		visual = 0;
 		args = copy_tabl(argc + 1, &argv[1]);
-	}
-	//args = realloc_tabl_remove_index(args, 0);
 	read_key(args, visual);
 	end(1);
-	return (0);
 }
