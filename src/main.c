@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:35:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 18:54:01 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 13:25:27 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,18 @@ int		ft_putchar_stdout(int c)
 	return (0);
 }
 
-void					end(int no)
+void	end(int no)
 {
 	if (no)
 		tputs(tgetstr("cl", NULL), 1, ft_putchar_stdout);
 	tcsetattr(g_fd, TCSANOW, &g_term_mem);
-	close(g_fd);
 	exit(1);
 }
 
-int						main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	t_term 	term;
-	char **args;
+	t_term	term;
+	char	**args;
 
 	if (argc == 1)
 		return (return_("Usage: ./ft_select [arg1] [arg2] [arg3] ...\n"));

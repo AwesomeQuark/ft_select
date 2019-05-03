@@ -6,13 +6,13 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:45:34 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 17:56:29 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 13:59:34 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int test_left(char *buff, t_infos *infos)
+int	test_left(char *buff, t_infos *infos)
 {
 	infos = NULL;
 	if (buff[0] == 27 && buff[1] == 91 && buff[2] == 68)
@@ -21,7 +21,7 @@ int test_left(char *buff, t_infos *infos)
 		return (0);
 }
 
-int test_right(char *buff, t_infos *infos)
+int	test_right(char *buff, t_infos *infos)
 {
 	infos = NULL;
 	if (buff[0] == 27 && buff[1] == 91 && buff[2] == 67)
@@ -30,7 +30,7 @@ int test_right(char *buff, t_infos *infos)
 		return (0);
 }
 
-int test_up(char *buff, t_infos *infos)
+int	test_up(char *buff, t_infos *infos)
 {
 	infos = NULL;
 	if (buff[0] == 27 && buff[1] == 91 && buff[2] == 65)
@@ -39,7 +39,7 @@ int test_up(char *buff, t_infos *infos)
 		return (0);
 }
 
-int test_down(char *buff, t_infos *infos)
+int	test_down(char *buff, t_infos *infos)
 {
 	infos = NULL;
 	if (buff[0] == 27 && buff[1] == 91 && buff[2] == 66)
@@ -48,7 +48,7 @@ int test_down(char *buff, t_infos *infos)
 		return (0);
 }
 
-int test_del(char *buff, t_infos *infos)
+int	test_del(char *buff, t_infos *infos)
 {
 	infos = NULL;
 	if (buff[0] == 127 && buff[1] == 0)

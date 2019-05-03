@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:33:03 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 18:53:20 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 14:00:25 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int		init_term(t_term *term)
 {
-	if ((g_fd = open(ttyname(0), O_RDWR)) == -1)
-		return (0);
 	if (tgetent(NULL, getenv("TERM")) < 1)
 		return (0);
 	if (tcgetattr(g_fd, &g_term_mem) == -1)
@@ -43,8 +41,8 @@ void	init_infos(t_infos *infos, char **args, int mode)
 	infos->current_index = infos->x + (infos->y * infos->max_x);
 	if (mode)
 	{
-		infos->original_x = 0;//wherex();
-		infos->original_y = 0;//wherey();
+		infos->original_x = 0;
+		infos->original_y = 0;
 		infos->x = 0;
 		infos->y = 0;
 		if (!(infos->selected = malloc(sizeof(int) * tab_len(args))))

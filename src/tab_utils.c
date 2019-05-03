@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 18:51:24 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 14:13:59 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 14:00:03 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ char			**copy_tabl(size_t size, char **tabl)
 
 int				get_longer(char **tabl)
 {
-	int	i;
-	size_t max;
+	int		i;
+	size_t	max;
 
 	i = 0;
 	max = 0;
@@ -80,10 +80,10 @@ int				get_longer(char **tabl)
 	return (max);
 }
 
-int					*realloc_int_tab(size_t remove_index, int *tabl,
+int				*realloc_int_tab(size_t remove_index, int *tabl,
 size_t size)
 {
-	int	*new;
+	int		*new;
 	size_t	i;
 	size_t	j;
 
