@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:38:21 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/03 13:22:42 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 16:45:26 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void			end(int no);
 
 int				init_term(t_term *term);
 void 			init_infos(t_infos *infos, char **args, int mode);
-int 			read_key(char **args);
-void			display(char **choices, t_infos *infos);
+int 			read_key(char **args, int visual);
+void			display(char **choices, t_infos *infos, int visual);
 
 char			**copy_tabl(size_t size, char **tabl);
 int				*realloc_int_tab(size_t remove_index, int *tabl, size_t size);

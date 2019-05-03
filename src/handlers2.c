@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:12:09 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/03 13:58:38 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 17:52:14 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	handle_escape(char ***args, t_infos *infos)
 {
-	args = NULL;
-	infos = NULL;
+	if (infos->selected)
+		free(infos->selected);
+	free_tab(*args);
 	end(1);
 }
 
@@ -29,7 +30,7 @@ void	handle_space(char ***args, t_infos *infos)
 	else if (infos->current_index != infos->nb_args - 1)
 	{
 		infos->y++;
-		infos->x = 0;
+		infos->x = 1;
 	}
 	else
 	{
@@ -53,5 +54,7 @@ void	handle_enter(char ***args, t_infos *infos)
 		}
 		i++;
 	}
+	free(infos->selected);
+	free_tab(*args);
 	end(0);
 }

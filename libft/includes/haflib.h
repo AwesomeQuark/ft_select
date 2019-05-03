@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:03:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/01 12:40:52 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 17:04:51 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void				*ft_memchr(const void *s, int c, size_t n);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
-
+void				ft_memset(char *s, int c, size_t i);
 char				*concat(char *s1, char *s2, char *s3);
 
 #endif

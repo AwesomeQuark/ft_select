@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 18:51:24 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/03 14:00:03 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 17:48:07 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char			**copy_tabl(size_t size, char **tabl)
 		return (NULL);
 	ret[size] = NULL;
 	i = 0;
-	while (tabl && i < size)
+	while (tabl && i < size - 1)
 	{
 		ret[i] = ft_strdup(tabl[i]);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:33:03 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/03 14:00:25 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 17:35:53 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	init_infos(t_infos *infos, char **args, int mode)
 	struct winsize w;
 
 	ioctl(0, TIOCGWINSZ, &w);
-	infos->max_len = get_longer(args) + 1;
+	infos->max_len = get_longer(args) + 2;
 	infos->max_x = w.ws_col / infos->max_len;
 	infos->nb_args = tab_len(args);
 	infos->max_y = infos->nb_args / infos->max_x;

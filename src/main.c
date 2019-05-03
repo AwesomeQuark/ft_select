@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:35:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/03 13:25:27 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 16:52:05 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	end(int no)
 	if (no)
 		tputs(tgetstr("cl", NULL), 1, ft_putchar_stdout);
 	tcsetattr(g_fd, TCSANOW, &g_term_mem);
+	tputs(tgetstr("ve", NULL), 1, ft_putchar_stdout);
 	exit(1);
 }
 
@@ -30,6 +31,7 @@ int		main(int argc, char **argv)
 {
 	t_term	term;
 	char	**args;
+	int		visual;
 
 	if (argc == 1)
 		return (return_("Usage: ./ft_select [arg1] [arg2] [arg3] ...\n"));
@@ -41,9 +43,18 @@ int		main(int argc, char **argv)
 	signal(SIGINT, end);
 	if (!init_term(&term))
 		return (0);
-	args = copy_tabl(argc + 1, argv);
-	args = realloc_tabl_remove_index(args, 0);
-	read_key(args);
+	if (ft_strcmp(argv[1], "-v") == 0)
+	{
+		visual = 1;
+		args = copy_tabl(argc + 1, &argv[2]);
+	}
+	else
+	{
+		visual = 0;
+		args = copy_tabl(argc + 1, &argv[1]);
+	}
+	//args = realloc_tabl_remove_index(args, 0);
+	read_key(args, visual);
 	end(1);
 	return (0);
 }
