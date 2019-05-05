@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:03:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/03 17:04:51 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 09:45:33 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ char				*get_the_file(int fd);
 void				print_int_str(int *tabl, size_t len);
 void				print_char_str(char c, size_t nb);
 void				ft_putstr_fd(char const *s, int fd);
+void				ft_putnbr_fd(int n, int fd);
 
+char				*ft_itoa(int n);
 void				*ft_bzero(void *s, size_t n);
 char				*ft_strdup(const char *s);
 char				*ft_memdup(const char *s, size_t size);

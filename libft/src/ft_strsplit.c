@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/11 11:53:38 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 18:12:34 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 09:03:52 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int		get_nb_word(char *s, char c)
 {
 	int		nb_word;
 
-	nb_word = 0;
+	nb_word = 1;
 	while (*s)
 	{
 		if (*s == c)

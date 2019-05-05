@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:37:01 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/03 16:45:15 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 10:10:46 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,28 @@ static t_handlers g_handlers[] =
 	{test_escape, handle_escape},
 	{test_space, handle_space},
 	{test_enter, handle_enter},
+	{test_completion, handle_completion},
 	{NULL, NULL}
 };
 
-int			read_key(char **args, int visual)
+int			read_key(int visual)
 {
-	char		buff[3];
+	char		buff[4];
 	t_infos		infos;
 	int			i;
 
-	init_infos(&infos, args, 1);
+	init_infos(&infos, 1);
 	while (1)
 	{
 		i = 0;
-		display(args, &infos, visual);
-		ft_bzero(buff, 3);
+		display(&infos, visual);
+		ft_bzero(buff, 4);
 		read(0, buff, 3);
 		while (g_handlers[i].test != NULL)
 		{
 			if (g_handlers[i].test(buff, &infos))
 			{
-				g_handlers[i].handler(&args, &infos);
+				g_handlers[i].handler(&infos);
 				break ;
 			}
 			i++;
