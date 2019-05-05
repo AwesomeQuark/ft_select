@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:33:03 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 11:12:34 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 12:26:31 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	get_positive(int *selected, int size)
 
 	i = 0;
 	tot = 0;
+	if (!selected)
+		return (0);
 	while (i < size)
 	{
 		if (selected[i])
@@ -28,7 +30,7 @@ static int	get_positive(int *selected, int size)
 	return (tot);
 }
 
-int		init_term(t_term *term)
+int			init_term(t_term *term)
 {
 	if (tgetent(NULL, getenv("TERM")) < 1)
 		return (0);
@@ -45,7 +47,7 @@ int		init_term(t_term *term)
 	return (1);
 }
 
-void	init_infos(t_infos *infos, int mode)
+void		init_infos(t_infos *infos, int mode)
 {
 	struct winsize w;
 
@@ -60,7 +62,6 @@ void	init_infos(t_infos *infos, int mode)
 	{
 		infos->x = 0;
 		infos->y = 0;
-		infos->current_index = 0;
 	}
 	if (mode)
 	{

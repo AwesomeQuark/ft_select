@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:12:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 10:25:48 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 11:26:12 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	test_enter(char *buff, t_infos *infos)
 		return (0);
 }
 
-int test_completion(char *buff, t_infos *infos)
+int	test_completion(char *buff, t_infos *infos)
 {
 	if (buff[0] == '\t' && buff[1] == 0)
 	{

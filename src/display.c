@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 11:07:49 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 11:19:58 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static void		beauty_print_args(t_infos *infos)
 
 static void		beauty(t_infos *infos)
 {
-	ft_putstr_fd(" FT # Tab : Enable search\n SE # Esc : Quit\n LE # Space : Add to selection\n", 0);
+	ft_putstr_fd(" FT # Tab : Enable search\n SE # Esc : Quit\n", 0);
+	ft_putstr_fd(" LE # Space : Add to selection\n", 0);
 	ft_putstr_fd(" CT # Enter : Validate selection\n-------\n", 0);
 	beauty_print_args(infos);
 	if (infos->nb_args % infos->max_x != 0)

@@ -6,20 +6,20 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:12:09 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 11:15:01 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 11:26:03 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	handle_escape(t_infos *infos)
+void		handle_escape(t_infos *infos)
 {
 	if (infos->selected)
 		free(infos->selected);
 	end(1);
 }
 
-void	handle_space(t_infos *infos)
+void		handle_space(t_infos *infos)
 {
 	infos->selected
 	[infos->current_index] = !infos->selected[infos->current_index];
@@ -37,7 +37,7 @@ void	handle_space(t_infos *infos)
 	}
 }
 
-void	handle_enter(t_infos *infos)
+void		handle_enter(t_infos *infos)
 {
 	int		i;
 
@@ -56,12 +56,30 @@ void	handle_enter(t_infos *infos)
 	end(0);
 }
 
-void	handle_completion(t_infos *infos)
+static void	find_in_args(t_infos *infos)
+{
+	size_t i;
+
+	i = 0;
+	while (g_argv[i])
+	{
+		if (ft_strncmp(g_argv[i], infos->completion,
+			ft_strlen(infos->completion)) == 0)
+		{
+			infos->x = i % infos->max_x;
+			infos->y = i / infos->max_x;
+			display(infos, 0);
+			break ;
+		}
+		i++;
+	}
+}
+
+void		handle_completion(t_infos *infos)
 {
 	char	buff[4];
 	char	*tmp;
-	size_t	i;
-	
+
 	while (1)
 	{
 		ft_bzero(buff, 4);
@@ -76,17 +94,6 @@ void	handle_completion(t_infos *infos)
 		if (!(infos->completion = ft_strjoin(infos->completion, buff)))
 			end(0);
 		free(tmp);
-		i = 0;
-		while (g_argv[i])
-		{
-			if (ft_strncmp(g_argv[i], infos->completion, ft_strlen(infos->completion)) == 0)
-			{
-				infos->x = i % infos->max_x;
-				infos->y = i / infos->max_x;
-				display(infos, 0);
-				break ;
-			}
-			i++;
-		}
+		find_in_args(infos);
 	}
 }

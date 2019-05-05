@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:35:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 09:33:57 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 12:34:29 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@ int		ft_putchar_stdout(int c)
 {
 	write(0, &c, 1);
 	return (0);
+}
+
+void	continu(int no)
+{
+	t_term	term;
+
+	(void)no;
+	init_term(&term);
 }
 
 void	end(int no)
@@ -40,7 +48,7 @@ int		main(int argc, char **argv)
 		ft_putstr_fd(argv[1], 1);
 		return (1);
 	}
-	//signal(SIGTSTP, end);
+	signal(SIGCONT, continu);
 	signal(SIGINT, end);
 	if (!init_term(&term))
 		return (0);
