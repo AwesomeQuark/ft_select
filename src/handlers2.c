@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:12:09 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 10:29:35 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 11:15:01 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	handle_completion(t_infos *infos)
 				infos->x = i % infos->max_x;
 				infos->y = i / infos->max_x;
 				display(infos, 0);
-				ft_printf("%s", g_argv[i]);
 				break ;
 			}
 			i++;
