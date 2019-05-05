@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:38:21 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 15:55:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 16:24:32 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_infos
 	int		current_index;
 	int		nb_args;
 	char	*completion;
+	int		found;
 }				t_infos;
 
 typedef struct	s_handlers

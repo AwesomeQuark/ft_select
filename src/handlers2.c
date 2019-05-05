@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:12:09 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 11:26:03 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 16:30:47 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ void		handle_enter(t_infos *infos)
 	{
 		if (infos->selected[i])
 		{
+			if (i != 0)
+				write(1, " ", 1);
 			write(1, g_argv[i], ft_strlen(g_argv[i]));
-			write(1, " ", 1);
 		}
 		i++;
 	}
@@ -56,23 +57,29 @@ void		handle_enter(t_infos *infos)
 	end(0);
 }
 
-static void	find_in_args(t_infos *infos)
+static int	find_in_args(t_infos *infos)
 {
-	size_t i;
+	size_t	i;
+	int		found;
 
 	i = 0;
+	found = 0;
 	while (g_argv[i])
 	{
 		if (ft_strncmp(g_argv[i], infos->completion,
 			ft_strlen(infos->completion)) == 0)
 		{
-			infos->x = i % infos->max_x;
-			infos->y = i / infos->max_x;
-			display(infos, 0);
-			break ;
+			found++;
+			if (found == 1)
+			{
+				infos->x = i % infos->max_x;
+				infos->y = i / infos->max_x;
+				display(infos, 0);
+			}
 		}
 		i++;
 	}
+	return (found);
 }
 
 void		handle_completion(t_infos *infos)
@@ -82,18 +89,20 @@ void		handle_completion(t_infos *infos)
 
 	while (1)
 	{
+
 		ft_bzero(buff, 4);
 		read(0, buff, 3);
-		if (test_escape(buff, infos))
+		tmp = infos->completion;
+		if (!(infos->completion = ft_strjoin(infos->completion, buff)))
+			end(0);
+		free(tmp);
+		infos->found = find_in_args(infos);
+		if (test_escape(buff, infos) || infos->found < 2)
 		{
 			free(infos->completion);
 			infos->completion = NULL;
 			return ;
 		}
-		tmp = infos->completion;
-		if (!(infos->completion = ft_strjoin(infos->completion, buff)))
-			end(0);
-		free(tmp);
-		find_in_args(infos);
+
 	}
 }

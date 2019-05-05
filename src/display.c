@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 13:01:32 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 16:29:15 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ static void		beauty(t_infos *infos)
 	{
 		ft_putstr_fd("\nCompletion: ", 0);
 		ft_putstr_fd(infos->completion, 0);
-		ft_putstr_fd(" [escape to quit]", 0);
+		ft_putstr_fd(" > ", 0);
+		ft_putnbr_fd(infos->found, 0);
+		ft_putstr_fd(" input match", 0);
+		ft_putstr_fd(" [escape to quit]\n", 0);
 	}
 }
 
