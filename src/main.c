@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:35:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 12:34:29 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 15:58:33 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,6 @@ int		ft_putchar_stdout(int c)
 {
 	write(0, &c, 1);
 	return (0);
-}
-
-void	continu(int no)
-{
-	t_term	term;
-
-	(void)no;
-	init_term(&term);
-}
-
-void	end(int no)
-{
-	if (no != 0)
-		tputs(tgetstr("cl", NULL), 1, ft_putchar_stdout);
-	free_tab(g_argv);
-	tcsetattr(0, TCSANOW, &g_term_mem);
-	tputs(tgetstr("ve", NULL), 1, ft_putchar_stdout);
-	exit(1);
 }
 
 int		main(int argc, char **argv)
@@ -48,10 +30,12 @@ int		main(int argc, char **argv)
 		ft_putstr_fd(argv[1], 1);
 		return (1);
 	}
-	signal(SIGCONT, continu);
-	signal(SIGINT, end);
+	signal_wrapper();
 	if (!init_term(&term))
+	{
+		ft_putstr_fd("Your shell doesn't support Termcaps.\n", 2);
 		return (0);
+	}
 	visual = 0;
 	if (ft_strcmp(argv[1], "-v") == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:33:03 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 12:26:31 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 16:03:56 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void		init_infos(t_infos *infos, int mode)
 {
 	struct winsize w;
 
-	ioctl(0, TIOCGWINSZ, &w);
+	if (ioctl(0, TIOCGWINSZ, &w) == -1)
+		return ;
 	infos->max_len = get_longer(g_argv) + 2;
 	infos->max_x = w.ws_col / infos->max_len;
 	infos->nb_args = tab_len(g_argv);
@@ -73,5 +74,9 @@ void		init_infos(t_infos *infos, int mode)
 		ft_bzero(infos->selected, sizeof(int) * tab_len(g_argv));
 	}
 	while (w.ws_row <= infos->max_y + 7)
-		ioctl(0, TIOCGWINSZ, &w);
+	{
+		ft_putstr_fd("The window is too small, use ctrl-C if you can't resize it\r", 0);
+		if (ioctl(0, TIOCGWINSZ, &w) == -1)
+			return ;
+	}
 }

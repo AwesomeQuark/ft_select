@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:37:01 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 10:10:46 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 15:55:00 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,21 @@ static t_handlers g_handlers[] =
 int			read_key(int visual)
 {
 	char		buff[4];
-	t_infos		infos;
+
 	int			i;
 
-	init_infos(&infos, 1);
+	init_infos(&g_infos, 1);
 	while (1)
 	{
 		i = 0;
-		display(&infos, visual);
+		display(&g_infos, visual);
 		ft_bzero(buff, 4);
 		read(0, buff, 3);
 		while (g_handlers[i].test != NULL)
 		{
-			if (g_handlers[i].test(buff, &infos))
+			if (g_handlers[i].test(buff, &g_infos))
 			{
-				g_handlers[i].handler(&infos);
+				g_handlers[i].handler(&g_infos);
 				break ;
 			}
 			i++;

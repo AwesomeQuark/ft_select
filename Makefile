@@ -21,7 +21,8 @@ SRC_NAME =		main.c\
 				handlers.c\
 				handlers2.c\
 				tests.c\
-				tests2.c
+				tests2.c\
+				signal.c
 
 SRC_DIR =		./src/
 SRC =			${addprefix $(SRC_DIR), $(SRC_NAME)}
