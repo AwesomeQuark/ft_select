@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:38:21 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 10:06:01 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 11:03:15 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_term
 typedef struct	s_infos
 {
 	int		*selected;
+	int		nb_selected;
 	int		x;
 	int		y;
 	int		max_x;

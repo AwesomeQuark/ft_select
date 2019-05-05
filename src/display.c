@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 10:36:19 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 11:07:49 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ static void		put_x_space(int x)
 	free(str);
 }
 
-static void		beauty(t_infos *infos)
+static void		beauty_print_args(t_infos *infos)
 {
 	int i;
 
 	i = 0;
-	ft_putstr_fd(" FT # Tab : Enable search\n SE # Esc : Quit\n LE # Space : Add to selection\n CT # Enter : Validate selection\n-------\n", 0);
 	while (g_argv[i])
 	{
 		if (infos->selected[i] == 1 && i == infos->current_index)
@@ -49,10 +48,19 @@ static void		beauty(t_infos *infos)
 		if (i % infos->max_x == 0)
 			write(0, "\n", 1);
 	}
-	if (i %infos->max_x != 0)
+}
+
+static void		beauty(t_infos *infos)
+{
+	ft_putstr_fd(" FT # Tab : Enable search\n SE # Esc : Quit\n LE # Space : Add to selection\n", 0);
+	ft_putstr_fd(" CT # Enter : Validate selection\n-------\n", 0);
+	beauty_print_args(infos);
+	if (infos->nb_args % infos->max_x != 0)
 		write(0, "\n", 1);
-	ft_putstr_fd("Total : ", 0);
+	ft_putstr_fd("\n\033[1m\033[4mTotal :\033[0m ", 0);
 	ft_putnbr_fd(infos->nb_args, 0);
+	ft_putstr_fd(" \033[1m\033[4mSelected :\033[0m ", 0);
+	ft_putnbr_fd(infos->nb_selected, 0);
 	if (infos->completion)
 	{
 		ft_putstr_fd("\nCompletion: ", 0);

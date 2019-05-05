@@ -39,7 +39,7 @@ LIB_DIR =		./libft/
 LIB_HEADER =	./libft/includes/
 LIB =			${addprefix $(LIB_DIR), $(LIB_NAME)}
 
-FLAGS =			-Wall -Werror -Wextra -g3 -O0 -fsanitize=address
+FLAGS =			-Wall -Werror -Wextra -g3 -O0
 CC =			clang
 
 #################################################################################

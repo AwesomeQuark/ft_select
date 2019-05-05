@@ -6,11 +6,27 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:33:03 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 10:36:41 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 11:12:34 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+static int	get_positive(int *selected, int size)
+{
+	int	i;
+	int	tot;
+
+	i = 0;
+	tot = 0;
+	while (i < size)
+	{
+		if (selected[i])
+			tot++;
+		i++;
+	}
+	return (tot);
+}
 
 int		init_term(t_term *term)
 {
@@ -39,7 +55,8 @@ void	init_infos(t_infos *infos, int mode)
 	infos->nb_args = tab_len(g_argv);
 	infos->max_y = infos->nb_args / infos->max_x;
 	infos->current_index = infos->x + (infos->y * infos->max_x);
-	if (infos->current_index >= infos->nb_args)
+	infos->nb_selected = get_positive(infos->selected, infos->nb_args);
+	if (infos->current_index >= infos->nb_args || infos->current_index < 0)
 	{
 		infos->x = 0;
 		infos->y = 0;
@@ -54,6 +71,6 @@ void	init_infos(t_infos *infos, int mode)
 			end(1);
 		ft_bzero(infos->selected, sizeof(int) * tab_len(g_argv));
 	}
-	while (w.ws_row <= infos->max_y + 6)
+	while (w.ws_row <= infos->max_y + 7)
 		ioctl(0, TIOCGWINSZ, &w);
 }
