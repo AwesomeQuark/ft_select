@@ -1,0 +1,4 @@
+improve ft_select
+more or less finish lem_in and optimise it
+Start compiler
+Typing training
