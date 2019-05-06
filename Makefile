@@ -6,7 +6,7 @@
 #    By: conoel <conoelstudent.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/04/26 14:01:05 by conoel           ###   ########.fr        #
+#    Updated: 2019/05/05 17:42:49 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ LIB_DIR =		./libft/
 LIB_HEADER =	./libft/includes/
 LIB =			${addprefix $(LIB_DIR), $(LIB_NAME)}
 
-FLAGS =			-Wall -Werror -Wextra -Ofast -fsanitize=address -g3
+FLAGS =			-Wall -Werror -Wextra #-Ofast -fsanitize=address -g3
 CC =			clang
 
 #################################################################################

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:12:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 11:26:12 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 18:39:15 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	test_completion(char *buff, t_infos *infos)
 		if (!(infos->completion = malloc(sizeof(char))))
 			end(0);
 		infos->completion[0] = '\0';
+		infos->found = infos->nb_args;
 		return (1);
 	}
 	else
