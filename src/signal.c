@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 14:27:18 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 15:55:40 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/07 14:57:13 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,22 @@
 
 void	stop(int no)
 {
-	int	i;
+	int		i;
+	char	ctrlz[2];
 
 	i = 0;
+	ctrlz[0] = 26;
+	ctrlz[1] = 0;
 	(void)no;
 	tcsetattr(0, TCSANOW, &g_term_mem);
 	tputs(tgetstr("ve", NULL), 1, ft_putchar_stdout);
-	while (i < 32)
+	while (i < NSIG)
 	{
 		if (i != SIGCONT)
 			signal(i, SIG_DFL);
 		i++;
 	}
+	ioctl(0, TIOCSTI, ctrlz);
 }
 
 void continue_(int no)
@@ -40,7 +44,7 @@ void continue_(int no)
 void end(int no)
 {
 	if (no != 0)
-		tputs(tgetstr("cl", NULL), 1, ft_putchar_stdout);
+//		tputs(tgetstr("cl", NULL), 1, ft_putchar_stdout);
 	free_tab(g_argv);
 	tcsetattr(0, TCSANOW, &g_term_mem);
 	tputs(tgetstr("ve", NULL), 1, ft_putchar_stdout);
@@ -58,7 +62,7 @@ void	signal_wrapper(void)
 	int	i;
 
 	i = 0;
-	while (i < 32)
+	while (i < NSIG)
 	{
 		if (i == SIGTSTP)
 			signal(i, stop);

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:12:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 18:39:15 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/07 16:34:21 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,39 @@ int	test_enter(char *buff, t_infos *infos)
 		return (0);
 }
 
+static char *common_base(char **words)
+{
+	size_t	size_identical;
+	size_t	i;
+	char	identical;
+	char	*ret;
+
+	identical = 1;
+	size_identical = 1;
+	while (identical)
+	{
+		i = 0;
+		while (words[i])
+		{
+			if (ft_strncmp(words[i], words[0], size_identical) != 0)
+			{
+				identical = 0;
+				break;
+			}
+			i++;
+		}
+		size_identical++;
+	}
+	ret = ft_memdup(words[1], size_identical - 2);
+	return (ret);
+}
+
 int	test_completion(char *buff, t_infos *infos)
 {
 	if (buff[0] == '\t' && buff[1] == 0)
 	{
-		if (!(infos->completion = malloc(sizeof(char))))
+		if (!(infos->completion = common_base(g_argv)))
 			end(0);
-		infos->completion[0] = '\0';
 		infos->found = infos->nb_args;
 		return (1);
 	}
