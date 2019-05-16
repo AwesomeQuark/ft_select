@@ -6,13 +6,13 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:12:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/07 16:34:21 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/16 18:15:44 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int	test_escape(char *buff, t_infos *infos)
+int			test_escape(char *buff, t_infos *infos)
 {
 	infos = NULL;
 	if (buff[0] == 27 && buff[1] == 0)
@@ -21,7 +21,7 @@ int	test_escape(char *buff, t_infos *infos)
 		return (0);
 }
 
-int	test_space(char *buff, t_infos *infos)
+int			test_space(char *buff, t_infos *infos)
 {
 	infos = NULL;
 	if (buff[0] == 32 && buff[1] == 0)
@@ -30,7 +30,7 @@ int	test_space(char *buff, t_infos *infos)
 		return (0);
 }
 
-int	test_enter(char *buff, t_infos *infos)
+int			test_enter(char *buff, t_infos *infos)
 {
 	infos = NULL;
 	if (buff[0] == 10 && buff[1] == 0)
@@ -39,7 +39,7 @@ int	test_enter(char *buff, t_infos *infos)
 		return (0);
 }
 
-static char *common_base(char **words)
+static char	*common_base(char **words)
 {
 	size_t	size_identical;
 	size_t	i;
@@ -56,7 +56,7 @@ static char *common_base(char **words)
 			if (ft_strncmp(words[i], words[0], size_identical) != 0)
 			{
 				identical = 0;
-				break;
+				break ;
 			}
 			i++;
 		}
@@ -66,7 +66,7 @@ static char *common_base(char **words)
 	return (ret);
 }
 
-int	test_completion(char *buff, t_infos *infos)
+int			test_completion(char *buff, t_infos *infos)
 {
 	if (buff[0] == '\t' && buff[1] == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:33:03 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 18:36:09 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/16 18:14:40 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static int	get_positive(int *selected, int size)
 
 int			init_term(t_term *term)
 {
+	signal_wrapper();
 	if (tgetent(NULL, getenv("TERM")) < 1)
 		return (0);
 	if (tcgetattr(0, &g_term_mem) == -1)
@@ -45,6 +46,16 @@ int			init_term(t_term *term)
 	tcsetattr(0, TCSANOW, &(term->term));
 	tputs(tgetstr("vi", NULL), 1, ft_putchar_stdout);
 	return (1);
+}
+
+static void	init_infos_hard(t_infos *infos)
+{
+	infos->completion = NULL;
+	infos->x = 0;
+	infos->y = 0;
+	if (!(infos->selected = malloc(sizeof(int) * tab_len(g_argv))))
+		end(1);
+	ft_bzero(infos->selected, sizeof(int) * tab_len(g_argv));
 }
 
 void		init_infos(t_infos *infos, int mode)
@@ -65,17 +76,11 @@ void		init_infos(t_infos *infos, int mode)
 		infos->y = 0;
 	}
 	if (mode)
-	{
-		infos->completion = NULL;
-		infos->x = 0;
-		infos->y = 0;
-		if (!(infos->selected = malloc(sizeof(int) * tab_len(g_argv))))
-			end(1);
-		ft_bzero(infos->selected, sizeof(int) * tab_len(g_argv));
-	}
+		init_infos_hard(infos);
 	while (w.ws_row <= infos->max_y + 7)
 	{
-		ft_putstr_fd("The window is too small, use ctrl-C if you can't resize it\r", 0);
+		ft_putstr_fd("The window is too small, use ctrl-C if you can't \
+resize it\r", 0);
 		if (ioctl(0, TIOCGWINSZ, &w) == -1)
 			return ;
 	}

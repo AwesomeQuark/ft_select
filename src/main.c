@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:35:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 15:58:33 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/16 18:07:11 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,8 @@ int		main(int argc, char **argv)
 		ft_putstr_fd(argv[1], 1);
 		return (1);
 	}
-	signal_wrapper();
 	if (!init_term(&term))
-	{
-		ft_putstr_fd("Your shell doesn't support Termcaps.\n", 2);
-		return (0);
-	}
+		return (return_("Your shell doesn't support Termcaps.\n"));
 	visual = 0;
 	if (ft_strcmp(argv[1], "-v") == 0)
 	{

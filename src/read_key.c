@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:37:01 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 15:55:00 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/16 18:08:17 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static t_handlers g_handlers[] =
 int			read_key(int visual)
 {
 	char		buff[4];
-
 	int			i;
 
 	init_infos(&g_infos, 1);

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:12:09 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/06 13:04:37 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/16 18:05:55 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	find_in_args(t_infos *infos)
 void		handle_completion(t_infos *infos)
 {
 	char	buff[4];
-	char	*tmp; 
+	char	*tmp;
 
 	display(infos, 0);
 	while (1)
@@ -98,7 +98,8 @@ void		handle_completion(t_infos *infos)
 		free(tmp);
 		infos->found = find_in_args(infos);
 		display(infos, 0);
-		if (test_escape(buff, infos) || infos->found < 2 || ft_strcmp(buff, " ") == 0)
+		if (test_escape(buff, infos) || infos->found < 2
+			|| ft_strcmp(buff, " ") == 0)
 		{
 			if (infos->found == 1 || ft_strcmp(buff, " ") == 0)
 				infos->selected[infos->current_index] = 1;
