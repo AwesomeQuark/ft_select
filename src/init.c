@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:33:03 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/16 18:14:40 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/17 10:28:03 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int			init_term(t_term *term)
 	term->term.c_cc[VTIME] = 0;
 	tcsetattr(0, TCSANOW, &(term->term));
 	tputs(tgetstr("vi", NULL), 1, ft_putchar_stdout);
+	tputs(tgetstr("ti", NULL), 1, ft_putchar_stdout);
 	return (1);
 }
 
