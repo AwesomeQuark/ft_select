@@ -19,9 +19,9 @@ SRC_NAME =		main.c\
 				tab_utils.c\
 				display.c\
 				arrow_handlers.c\
+				arrow_tests.c\
 				special_handlers.c\
-				tests.c\
-				tests2.c\
+				special_tests.c\
 				signal.c
 
 SRC_DIR =		./src/
@@ -40,7 +40,7 @@ LIB_DIR =		./libft/
 LIB_HEADER =	./libft/includes/
 LIB =			${addprefix $(LIB_DIR), $(LIB_NAME)}
 
-FLAGS =			-Wall -Werror -Wextra
+FLAGS =			-Wall -Werror -Wextra -g3
 CC =			clang
 
 #################################################################################

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests2.c                                           :+:      :+:    :+:   */
+/*   special_tests.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:12:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/25 22:11:42 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/25 22:13:31 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,10 @@ int			test_completion(char *buff, t_infos *infos)
 	if (buff[0] == '\t' && buff[1] == 0)
 	{
 		if (!(infos->completion = common_base(g_argv)))
-			end(EXIT_FAILURE);
-		if (!(infos->supposition = ft_strdup("")))
-			end(EXIT_FAILURE);
+			end(0);
+		infos->supposition = g_argv[1];
+		infos->x = 0;
+		infos->y = 0;
 		infos->found = infos->nb_args;
 		return (1);
 	}

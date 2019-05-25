@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/25 21:52:27 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/25 22:03:15 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,15 @@ static void		beauty(t_infos *infos)
 	beauty_print_args(infos);
 	if (infos->nb_args % infos->max_x != 0)
 		write(0, "\n", 1);
-	ft_putstr_fd("\n\033[1m\033[4mTotal :\033[0m ", 0);
-	ft_putnbr_fd(infos->nb_args, 0);
-	ft_putstr_fd(" \033[1m\033[4mSelected :\033[0m ", 0);
-	ft_putnbr_fd(infos->nb_selected, 0);
+	ft_dprintf(0, "\n%s%sTotal :%s %d ", BOLD, UNDERLINE, DEF, infos->nb_args);
+	ft_dprintf(0, "%s%sSelected :%s %d", BOLD, UNDERLINE, DEF,
+		infos->nb_selected);
 	if (infos->completion)
 	{
-		ft_putstr_fd("\nCompletion: ", 0);
-		ft_putstr_fd(infos->completion, 0);
-		ft_putstr_fd("\033[2m", 0);
-		ft_putstr_fd(infos->supposition + ft_strlen(infos->completion), 0);
-		ft_putstr_fd("\033[0m", 0);
-		ft_putstr_fd(" > ", 0);
-		ft_putnbr_fd(infos->found, 0);
-		ft_putstr_fd(" input match", 0);
-		ft_putstr_fd(" [escape to quit]\n", 0);
+		ft_printf("%p %p", infos->completion, infos->supposition);
+		ft_dprintf(0, "\nCompletion: %s%s%s%s > %d input match [esc to quit]",
+			infos->completion, SHADED, infos->supposition
+			+ ft_strlen(infos->completion), DEF, infos->found);
 	}
 }
 

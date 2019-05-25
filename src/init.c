@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:33:03 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/25 18:57:48 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/25 22:00:51 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int			init_term(t_term *term)
 static void	init_infos_hard(t_infos *infos)
 {
 	infos->completion = NULL;
+	infos->supposition = NULL;
 	infos->x = 0;
 	infos->y = 0;
 	if (!(infos->selected = malloc(sizeof(int) * tab_len(g_argv))))
