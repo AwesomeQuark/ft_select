@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/15 18:10:19 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/13 20:17:16 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/25 18:28:40 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,4 @@ void	get_pourcent(t_flag *all)
 	}
 	if (all->minus == 0)
 		ft_charcat2('%', all);
-}
-
-void	get_float(t_flag *all)
-{
-	if (all->l == 1)
-		ft_ftoa(va_arg(all->ap, long double), all);
-	else
-		ft_ftoa(va_arg(all->ap, double), all);
 }

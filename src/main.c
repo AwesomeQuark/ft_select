@@ -6,11 +6,13 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:35:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/22 20:12:16 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/25 19:19:35 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+volatile sig_atomic_t	quit = 0;
 
 int			ft_putchar_stdout(int c)
 {
@@ -38,20 +40,19 @@ static int	errors(int argc, char **argv)
 int			main(int argc, char **argv)
 {
 	t_term	term;
-	int		visual;
 
-	if (!(errors(argc, argv)))
-		return (EXIT_FAILURE);
 	if (!init_term(&term))
 		return (return_("Your shell doesn't support Termcaps.\n"));
-	visual = 0;
+	if (!(errors(argc, argv)))
+		end(EXIT_FAILURE);
+	g_infos.visual = 0;
 	if (ft_strcmp(argv[1], "-v") == 0)
 	{
-		visual = 1;
+		g_infos.visual = 1;
 		g_argv = copy_tabl(argc, &argv[2]);
 	}
 	else
 		g_argv = copy_tabl(argc + 1, &argv[1]);
-	read_key(visual);
-	end(1);
+	read_key();
+	end(EXIT_SUCCESS);
 }

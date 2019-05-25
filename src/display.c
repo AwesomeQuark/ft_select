@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/07 16:35:11 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/25 21:52:27 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,13 @@ static void		beauty_print_args(t_infos *infos)
 	while (g_argv[i])
 	{
 		if (infos->selected[i] == 1 && i == infos->current_index)
-			ft_putstr_fd("\033[1m\033[41m\033[30m<", 0);
+			ft_dprintf(0, "%s%s<%s>%s","\033[41m", BLACK, g_argv[i], DEF);
 		else if (infos->selected[i] == 1)
-			ft_putstr_fd("\033[44m\033[30m", 0);
+			ft_dprintf(0, "%s\033[44m%s%s", BLACK, g_argv[i], DEF);
 		else if (i == infos->current_index)
-			ft_putstr_fd("\033[1m\033[31m<", 0);
-		ft_putstr_fd(g_argv[i], 0);
-		if (i == infos->current_index)
-			write(0, ">", 1);
-		ft_putstr_fd("\033[0m", 0);
+			ft_dprintf(0, "%s<%s>%s", RED, g_argv[i], DEF);
+		else
+			ft_dprintf(0, "%s", g_argv[i]);
 		if (i == infos->current_index)
 			put_x_space(infos->max_len - (ft_strlen(g_argv[i]) + 2));
 		else
@@ -84,30 +82,27 @@ static void		classic(t_infos *infos)
 	while (g_argv[i])
 	{
 		if (infos->selected[i] == 1 && i == infos->current_index)
-			ft_putstr_fd("\033[7m\033[4m", 0);
+			ft_dprintf(0, "%s%s%s%s", UNDERLINE, REVERSE, g_argv[i], DEF);
 		else if (infos->selected[i] == 1)
-			ft_putstr_fd("\033[7m", 0);
+			ft_dprintf(0, "%s%s%s", REVERSE, g_argv[i], DEF);
 		else if (i == infos->current_index)
-			ft_putstr_fd("\033[4m", 0);
-		ft_putstr_fd(g_argv[i], 0);
-		ft_putstr_fd("\033[0m", 0);
-		put_x_space(infos->max_len - ft_strlen(g_argv[i]));
+			ft_dprintf(0, "%s%s%s", UNDERLINE, g_argv[i], DEF);
+		else
+			ft_dprintf(0, "%s", g_argv[i]);
+		print_char_str(' ', infos->max_len - ft_strlen(g_argv[i]));
 		i++;
 		if (i % infos->max_x == 0)
 			write(0, "\n", 1);
 	}
+	ft_dprintf(0, "x: %d y: %d", infos->x, infos->y);
 }
 
-void			display(t_infos *infos, int visual)
+void			display(t_infos *infos)
 {
-	static int visual_s = -1;
-
-	if (visual_s == -1)
-		visual_s = visual;
 	init_infos(infos, 0);
 	tputs(tgetstr("cl", NULL), 1, ft_putchar_stdout);
 	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, ft_putchar_stdout);
-	if (visual_s == 0)
+	if (infos->visual == 0)
 		classic(infos);
 	else
 		beauty(infos);

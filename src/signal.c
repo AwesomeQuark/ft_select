@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 14:27:18 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/21 18:51:09 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/25 19:20:20 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		continue_(int no)
 	(void)no;
 	init_term(&term);
 	signal_wrapper();
-	display(&g_infos, 1);
+	display(&g_infos);
 }
 
 void		end(int no)
@@ -50,13 +50,13 @@ void		end(int no)
 	tcsetattr(0, TCSANOW, &g_term_mem);
 	tputs(tgetstr("ve", NULL), 1, ft_putchar_stdout);
 	tputs(tgetstr("te", NULL), 1, ft_putchar_stdout);
-	exit(1);
+	exit(no);
 }
 
 void		resize(int no)
 {
 	(void)no;
-	display(&g_infos, 1);
+	display(&g_infos);
 	signal(no, resize);
 }
 
@@ -73,7 +73,8 @@ void		signal_wrapper(void)
 			signal(i, continue_);
 		else if (i == SIGWINCH)
 			signal(i, resize);
-		else if (i != SIGQUIT && i != SIGKILL)
+		else if (i != SIGSTOP && i != SIGKILL && i != SIGILL && i != SIGFPE
+			&& i != SIGSEGV && i != SIGQUIT)
 			signal(i, end);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 10:46:18 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/07 16:37:16 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/28 18:23:50 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *s)
 	int i;
 
 	i = 0;
-	if (!s || s < (const char *)256)
+	if (!s)
 		return (0);
 	while (s[i])
 		i++;

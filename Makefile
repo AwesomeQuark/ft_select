@@ -18,8 +18,8 @@ SRC_NAME =		main.c\
 				read_key.c\
 				tab_utils.c\
 				display.c\
-				handlers.c\
-				handlers2.c\
+				arrow_handlers.c\
+				special_handlers.c\
 				tests.c\
 				tests2.c\
 				signal.c

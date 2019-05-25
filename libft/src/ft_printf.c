@@ -6,20 +6,21 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 09:15:05 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/13 20:17:16 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/25 18:16:09 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	init(t_flag *all, int start)
+void	init(t_flag *all, int start, int fd)
 {
 	if (start)
 	{
 		all->total_size = 0;
 		all->buffer_index = 0;
 		all->str_index = 0;
-		ft_bzero2(all->buffer, BUFF + 1);
+		ft_bzero(all->buffer, BUFF + 1);
+		all->fd = fd;
 	}
 	all->intflags = 0;
 	all->type = 0;
@@ -34,28 +35,28 @@ static void	init(t_flag *all, int start)
 	all->zero = 0;
 }
 
-static int	if_norme(char s, int type)
+int	if_norme(char s, int type)
 {
 	if (type == 1)
 	{
-		if ((s >= '0' && s <= '9') || s == 'd' || s == 'i' || s == 'o' ||
-	s == 'u' || s == 'x' || s == 'X' || s == 'c' || s == 's' || s == 'p' ||
-	s == 'l' || s == 'h' || s == 'f' || s == '%' || s == '.' || s == '-' ||
-	s == ' ' || s == '+' || s == '#' || s == 'L' || s == '*' || s == 'b' ||
-	s == 'O' || s == 'U' || s == 'F' || s == 'm' || s == 'n')
+		if ((s >= '0' && s <= '9') || s == 'd' || s == 'i' || s == 'o'
+		|| s == 'u' || s == 'x' || s == 'X' || s == 'c' || s == 's' || s == 'p'
+		|| s == 'l' || s == 'h' || s == '%' || s == '.' || s == '-' || s == ' '
+		|| s == '+' || s == '#' || s == 'L' || s == '*' || s == 'b' || s == 'O'
+		|| s == 'U' || s == 'F' || s == 'm' || s == 'n')
 			return (1);
 	}
 	if (type == 2)
 	{
-		if (s == 'd' || s == 'i' || s == 'o' || s == 'u' || s == 'x' ||
-		s == 'X' || s == 'c' || s == 's' || s == 'p' || s == 'f' || s == '%' ||
-		s == 'b' || s == 'O' || s == 'U' || s == 'F' || s == 'm' || s == 'n')
+		if (s == 'd' || s == 'i' || s == 'o' || s == 'u' || s == 'x' ||s == 'X'
+		|| s == 'c' || s == 's' || s == 'p' || s == '%' || s == 'b' || s == 'O'
+		|| s == 'F' || s == 'U' || s == 'm' || s == 'n')
 			return (1);
 	}
 	return (0);
 }
 
-static void	parse_flags(t_flag *all, char *str)
+void	parse_flags(t_flag *all, char *str)
 {
 	while (if_norme(str[I], 1) && all->type == 0)
 	{
@@ -80,9 +81,9 @@ static void	parse_flags(t_flag *all, char *str)
 	all->precision < -1 && all->type == 's' ? all->precision *= -1 : 0;
 }
 
-static int	get_next_arg(t_flag *all, char *str)
+int	get_next_arg(t_flag *all, char *str)
 {
-	init(all, 0);
+	init(all, 0, 0);
 	parse_flags(all, str);
 	all->type == 'd' || all->type == 'i' ? get_int(all) : 0;
 	all->type == 'o' || all->type == 'x' || all->type == 'X' ||
@@ -92,7 +93,6 @@ static int	get_next_arg(t_flag *all, char *str)
 	char_flags((char)va_arg(all->ap, int), all) : 0;
 	all->type == 'p' ? ft_ptoa(va_arg(all->ap, size_t), all) : 0;
 	all->type == 's' ? str_flags(va_arg(all->ap, char *), all) : 0;
-	all->type == 'f' || all->type == 'F' ? get_float(all) : 0;
 	all->type == '%' ? char_flags('%', all) : 0;
 	all->type == 'm' ? print_errno(all) : 0;
 	all->type == 'n' ? get_charwriten(all) : 0;
@@ -103,7 +103,7 @@ int			ft_printf(const char *str, ...)
 {
 	t_flag		all;
 
-	init(&all, 1);
+	init(&all, 1, 1);
 	va_start(all.ap, str);
 	while (str[all.str_index])
 	{
@@ -113,7 +113,7 @@ int			ft_printf(const char *str, ...)
 			ft_charcat2(str[all.str_index], &all);
 		all.str_index++;
 	}
-	(all.buffer_index != 0) ? write(1, all.buffer, all.buffer_index) : 0;
+	(all.buffer_index != 0) ? write(all.fd, all.buffer, all.buffer_index) : 0;
 	va_end(all.ap);
 	return (all.total_size + all.buffer_index);
 }

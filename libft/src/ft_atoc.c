@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen2.c                                       :+:      :+:    :+:   */
+/*   ft_atoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/09 10:46:18 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 16:53:04 by conoel           ###   ########.fr       */
+/*   Created: 2019/05/25 13:02:21 by conoel            #+#    #+#             */
+/*   Updated: 2019/05/25 13:02:45 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen2(const char *s)
+char	ft_atoc(char *nb)
 {
-	int i;
+	char	ret;
+	int		sign;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	ret = 0;
+	if (!nb || *nb == '\0')
+		return (0);
+	if (*nb == '-')
+	{
+		sign = -1;
+		nb++;
+	}
+	else
+		sign = 0;
+	while (*nb && ft_isdigit(*nb))
+	{
+		ret = ret * 10;
+		ret += *nb + '0';
+		nb++;
+	}
+	return (ret);
 }

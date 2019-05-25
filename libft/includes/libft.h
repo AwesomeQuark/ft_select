@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 18:22:48 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/27 23:02:43 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/25 18:17:17 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void				*ft_bzero(void *s, size_t n);
 char				*ft_strdup(const char *s);
 char				*ft_memdup(const char *s, size_t size);
 void				print_int_str(int *tab, size_t len);
-
+char				ft_atoc(char *nb);
+short				ft_atos(char *nb);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);
@@ -100,6 +101,7 @@ typedef struct		s_flag
 	va_list	ap;
 	size_t	buffer_index;
 	size_t	str_index;
+	int		fd;
 	int		total_size;
 	char	type;
 	char	intflags;
@@ -113,14 +115,8 @@ typedef struct		s_flag
 	char	zero;
 }					t_flag;
 
-void				*ft_memset2(void *s, int c, size_t n);
-void				ft_bzero2(char *s, size_t n);
-int					ft_strcmp2(const char *s1, const char *s2);
-char				*ft_strdup2(const char *s);
-size_t				ft_strlen2(const char *s);
-char				*ft_itoa2(int n);
 int					ft_atoi2(char *s, t_flag *all);
-void				ft_strrev2(char *str);
+void				ft_strrev(char *str);
 
 /*
 **itoabu stands for : integer to array base unsigned
@@ -144,6 +140,12 @@ void				get_float(t_flag *all);
 void				get_nothing(t_flag *all);
 void				print_errno(t_flag *all);
 void				get_charwriten(t_flag *all);
+void				init(t_flag *all, int start, int fd);
+int					if_norme(char s, int type);
+void				parse_flags(t_flag *all, char *str);
+int					get_next_arg(t_flag *all, char *str);
 
 int					ft_printf(const char *str, ...);
+int					ft_dprintf(int fd, const char *str, ...);
+
 #endif

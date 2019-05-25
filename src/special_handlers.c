@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handlers2.c                                        :+:      :+:    :+:   */
+/*   special_handlers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:12:09 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/17 10:26:00 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/25 19:19:43 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		handle_completion(t_infos *infos)
 	char	buff[4];
 	char	*tmp;
 
-	display(infos, 0);
+	display(infos);
 	while (1)
 	{
 		ft_bzero(buff, 4);
@@ -97,14 +97,13 @@ void		handle_completion(t_infos *infos)
 			end(0);
 		free(tmp);
 		infos->found = find_in_args(infos);
-		display(infos, 0);
+		display(infos);
 		if (test_escape(buff, infos) || infos->found < 2
 			|| ft_strcmp(buff, " ") == 0)
 		{
 			if (infos->found == 1 || ft_strcmp(buff, " ") == 0)
 				infos->selected[infos->current_index] = 1;
-			free(infos->completion);
-			infos->completion = NULL;
+			ft_memdel((void **)&(infos->completion));
 			return ;
 		}
 	}
