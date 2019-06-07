@@ -9,7 +9,7 @@
 #    Updated: 2019/04/22 08:31:40 by bghandou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-#V2.3
+#V3.0
 ################################### VARIABLES ##################################
 
 NAME = haflib.a
@@ -27,7 +27,7 @@ SRCNAME = 			ft_bzero.c ft_memcpy.c ft_memccpy.c ft_iscntrl.c ft_isgraph.c \
 					ft_strclr.c ft_strsub.c \
 					ft_strjoin.c ft_strtrim.c ft_strsplit.c ft_itoa.c ft_putchar.c ft_putstr.c \
 					ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-					ft_putnbr_fd.c ft_isspace.c ft_isblank.c ft_memset.c quit.c ft_memdup.c\
+					ft_putnbr_fd.c ft_isspace.c ft_isblank.c ft_memset.c quit.c ft_memdup.c divide.c\
 					ft_strtoll.c get_the_file.c print_char_str.c free_tab.c print_int_str.c\
 					garbage.c concat.c ft_atos.c ft_atoc.c\
 					ft_printf.c get_args.c ft_size_flags.c additional_converters.c \

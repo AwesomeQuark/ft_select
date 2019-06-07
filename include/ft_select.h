@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:38:21 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/25 19:18:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/26 12:34:06 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct	s_handlers
 struct termios	g_term_mem;
 char			**g_argv;
 t_infos			g_infos;
-extern volatile sig_atomic_t	quit;
 
 int				ft_putchar_stdout(int c);
 void			end(int no);

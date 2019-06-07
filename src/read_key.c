@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:37:01 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/25 19:18:54 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/25 22:55:58 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			read_key(void)
 {
 	char		buff[4];
 	int			i;
-
+	
 	init_infos(&g_infos, 1);
 	while (1)
 	{

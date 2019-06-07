@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 18:22:48 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/25 18:17:17 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/26 12:26:02 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ char				*ft_strtrim(char const *s);
 char				*ft_itoa(int n);
 void				*ft_memchr(const void *s, int c, size_t n);
 char				*concat(char *s1, char *s2, char *s3);
-
+unsigned int		modulo(int a, int b);
+unsigned int		divide(int a, int b);
 char				*ft_strjoin(char const *s1, char const *s2);
 void				exit_free(char *msg, int format, ...);
 void				exit_(char *msg);

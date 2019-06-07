@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:33:03 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/25 22:00:51 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/26 12:43:00 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,12 @@ void		init_infos(t_infos *infos, int mode)
 {
 	struct winsize w;
 
-	while (w.ws_row <= infos->max_y + 7)
-	{
-		ft_putstr_fd("The window is too small, use ctrl-C if you can't \
-resize it\r", 0);
-		if (ioctl(0, TIOCGWINSZ, &w) == -1)
-			return ;
-	}
 	if (ioctl(0, TIOCGWINSZ, &w) == -1)
 		return ;
 	infos->max_len = get_longer(g_argv) + 2;
-	infos->max_x = w.ws_col / infos->max_len;
+	infos->max_x = divide(w.ws_col, infos->max_len);
 	infos->nb_args = tab_len(g_argv);
-	infos->max_y = infos->nb_args / infos->max_x;
+	infos->max_y = divide(infos->nb_args, infos->max_x);
 	infos->current_index = infos->x + (infos->y * infos->max_x);
 	infos->nb_selected = get_positive(infos->selected, infos->nb_args);
 	if (infos->current_index >= infos->nb_args || infos->current_index < 0)
@@ -86,4 +79,11 @@ resize it\r", 0);
 	}
 	if (mode)
 		init_infos_hard(infos);
+	while (w.ws_row <= infos->max_y + infos->visual * 7 || w.ws_col <= infos->max_x * infos->max_len)
+	{
+		ft_putstr_fd("The window is too small, use ctrl-C if you can't \
+resize it\r", 0);
+		if (ioctl(0, TIOCGWINSZ, &w) == -1)
+			return ;
+	}
 }

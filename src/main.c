@@ -6,13 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 12:35:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/25 19:19:35 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/26 12:34:20 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
-volatile sig_atomic_t	quit = 0;
 
 int			ft_putchar_stdout(int c)
 {

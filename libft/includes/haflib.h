@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:03:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/25 19:04:12 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/26 12:26:23 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void				ft_putnbr_fd(int n, int fd);
 void				*ft_bzero(void *s, size_t n);
 char				*ft_strdup(const char *s);
 char				*ft_memdup(const char *s, size_t size);
+char				*concat(char *s1, char *s2, char *s3);
 
 void				free_tab(char **tabl);
 void				ft_memdel(void **ap);
@@ -77,6 +78,7 @@ char				*ft_strncpy(char *dest, const char *src, size_t n);
 /*
 ** MISC
 */
-char				*concat(char *s1, char *s2, char *s3);
+unsigned int		modulo(int a, int b);
+unsigned int		divide(int a, int b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 11:12:09 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/25 19:19:43 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/26 12:32:45 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	find_in_args(t_infos *infos)
 			if (found == 1)
 			{
 				infos->x = i % infos->max_x;
-				infos->y = i / infos->max_x;
+				infos->y = divide(i, infos->max_x);
 				infos->supposition = g_argv[i];
 			}
 		}

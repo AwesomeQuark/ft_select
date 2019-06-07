@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/25 22:03:15 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/26 14:22:34 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,24 @@ static void		beauty_print_args(t_infos *infos)
 		else
 			put_x_space(infos->max_len - ft_strlen(g_argv[i]));
 		i++;
-		if (i % infos->max_x == 0)
+		if (modulo(i, infos->max_x) == 0)
 			write(0, "\n", 1);
 	}
 }
 
 static void		beauty(t_infos *infos)
 {
-	ft_putstr_fd(" FT # Tab : Enable search\n SE # Esc : Quit\n", 0);
-	ft_putstr_fd(" LE # Space : Add to selection\n", 0);
-	ft_putstr_fd(" CT # Enter : Validate selection\n-------\n", 0);
+	ft_putstr_fd(" FT # Tab : Enable search\n SE # Esc : Quit\n LE # Space : Add\
+to selection\n CT # Enter : Validate selection\n-------\n", 0);
 	beauty_print_args(infos);
-	if (infos->nb_args % infos->max_x != 0)
+	if (modulo(infos->nb_args, infos->max_x) != 0)
 		write(0, "\n", 1);
 	ft_dprintf(0, "\n%s%sTotal :%s %d ", BOLD, UNDERLINE, DEF, infos->nb_args);
 	ft_dprintf(0, "%s%sSelected :%s %d", BOLD, UNDERLINE, DEF,
 		infos->nb_selected);
 	if (infos->completion)
 	{
-		ft_printf("%p %p", infos->completion, infos->supposition);
+		ft_dprintf(0, "%p %p", infos->completion, infos->supposition);
 		ft_dprintf(0, "\nCompletion: %s%s%s%s > %d input match [esc to quit]",
 			infos->completion, SHADED, infos->supposition
 			+ ft_strlen(infos->completion), DEF, infos->found);
