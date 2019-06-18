@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:37:01 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/25 22:55:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/06/07 15:26:04 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ static t_handlers g_handlers[] =
 	{NULL, NULL}
 };
 
+static int	win_good(t_infos *infos)
+{
+	struct winsize w;
+
+	if (ioctl(0, TIOCGWINSZ, &w) == -1)
+		return (0);
+	if (w.ws_row <= infos->max_y + infos->visual * 7 || w.ws_col <= infos->max_x * infos->max_len)
+		return (0);
+	return (1);
+}
 int			read_key(void)
 {
 	char		buff[4];
@@ -35,9 +45,12 @@ int			read_key(void)
 	while (1)
 	{
 		i = 0;
-		display(&g_infos);
 		ft_bzero(buff, 4);
-		read(0, buff, 3);
+		if (win_good(&g_infos))
+		{
+			display(&g_infos);
+			read(0, buff, 3);
+		}
 		while (g_handlers[i].test != NULL)
 		{
 			if (g_handlers[i].test(buff, &g_infos))

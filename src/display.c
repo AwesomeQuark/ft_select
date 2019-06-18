@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/26 14:22:34 by conoel           ###   ########.fr       */
+/*   Updated: 2019/06/07 15:20:18 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void		classic(t_infos *infos)
 			ft_dprintf(0, "%s", g_argv[i]);
 		print_char_str(' ', infos->max_len - ft_strlen(g_argv[i]));
 		i++;
-		if (i % infos->max_x == 0)
+		if (modulo(i, infos->max_x) == 0)
 			write(0, "\n", 1);
 	}
 	ft_dprintf(0, "x: %d y: %d", infos->x, infos->y);

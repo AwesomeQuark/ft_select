@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:33:03 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/26 12:43:00 by conoel           ###   ########.fr       */
+/*   Updated: 2019/06/07 15:25:23 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,4 @@ void		init_infos(t_infos *infos, int mode)
 	}
 	if (mode)
 		init_infos_hard(infos);
-	while (w.ws_row <= infos->max_y + infos->visual * 7 || w.ws_col <= infos->max_x * infos->max_len)
-	{
-		ft_putstr_fd("The window is too small, use ctrl-C if you can't \
-resize it\r", 0);
-		if (ioctl(0, TIOCGWINSZ, &w) == -1)
-			return ;
-	}
 }
