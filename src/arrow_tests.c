@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:45:34 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/26 14:30:42 by conoel           ###   ########.fr       */
+/*   Updated: 2019/06/27 01:40:31 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ int	test_down(char *buff, t_infos *infos)
 int	test_del(char *buff, t_infos *infos)
 {
 	infos = NULL;
-	if ((buff[0] == 127 && buff[1] == 0) || (buff[0] == 7 && buff[1] == 0))
+	if ((buff[0] == 127 && buff[1] == 0)
+		|| (buff[0] == 27 && buff[1] == 91 && buff[2] == 51))
 		return (1);
 	else
+	
 		return (0);
 }
+

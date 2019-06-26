@@ -40,7 +40,7 @@ LIB_DIR =		./libft/
 LIB_HEADER =	./libft/includes/
 LIB =			${addprefix $(LIB_DIR), $(LIB_NAME)}
 
-FLAGS =			-Wall -Werror -Wextra -g3
+FLAGS =			#-Wall -Werror -Wextra -g3
 CC =			clang
 
 #################################################################################

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 14:27:18 by conoel            #+#    #+#             */
-/*   Updated: 2019/06/26 14:53:27 by conoel           ###   ########.fr       */
+/*   Updated: 2019/06/27 01:41:41 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void		continue_(int no)
 void		end(int no)
 {
 	(void)no;
-	free_tab(g_argv);
-	tcsetattr(0, TCSANOW, &g_term_mem);
 	tputs(tgetstr("ve", NULL), 1, ft_putchar_stdout);
 	tputs(tgetstr("te", NULL), 1, ft_putchar_stdout);
+	free_tab(g_argv);
+	tcsetattr(0, TCSANOW, &g_term_mem);
 	exit(no);
 }
 
