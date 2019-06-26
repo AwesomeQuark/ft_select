@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 14:27:18 by conoel            #+#    #+#             */
-/*   Updated: 2019/06/07 15:27:27 by conoel           ###   ########.fr       */
+/*   Updated: 2019/06/26 14:53:27 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void		stop(int no)
 	ctrlz[0] = 26;
 	ctrlz[1] = 0;
 	(void)no;
-	tputs(tgetstr("te", NULL), 1, ft_putchar_stdout);
 	tcsetattr(0, TCSANOW, &g_term_mem);
 	tputs(tgetstr("ve", NULL), 1, ft_putchar_stdout);
+	tputs(tgetstr("te", NULL), 1, ft_putchar_stdout);
 	while (i < NSIG)
 	{
 		if (i != SIGCONT)

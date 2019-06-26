@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/06/07 15:20:18 by conoel           ###   ########.fr       */
+/*   Updated: 2019/06/26 14:51:39 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ to selection\n CT # Enter : Validate selection\n-------\n", 0);
 		infos->nb_selected);
 	if (infos->completion)
 	{
-		ft_dprintf(0, "%p %p", infos->completion, infos->supposition);
 		ft_dprintf(0, "\nCompletion: %s%s%s%s > %d input match [esc to quit]",
 			infos->completion, SHADED, infos->supposition
 			+ ft_strlen(infos->completion), DEF, infos->found);
@@ -87,16 +86,24 @@ static void		classic(t_infos *infos)
 		if (modulo(i, infos->max_x) == 0)
 			write(0, "\n", 1);
 	}
-	ft_dprintf(0, "x: %d y: %d", infos->x, infos->y);
 }
 
 void			display(t_infos *infos)
 {
+	struct winsize w;
+	
+	ioctl(0, TIOCGWINSZ, &w);
 	init_infos(infos, 0);
 	tputs(tgetstr("cl", NULL), 1, ft_putchar_stdout);
 	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, ft_putchar_stdout);
-	if (infos->visual == 0)
-		classic(infos);
+	if (w.ws_row > infos->max_y + 7 && w.ws_col > infos->max_x
+		&& infos->max_x > 0 && infos->max_y > 0)
+	{
+		if (infos->visual == 0)
+			classic(infos);
+		else
+			beauty(infos);
+	}
 	else
-		beauty(infos);
+		ft_printf("Window too small :(\n");
 }
