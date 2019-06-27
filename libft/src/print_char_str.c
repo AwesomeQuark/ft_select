@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 01:03:37 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 14:44:22 by conoel           ###   ########.fr       */
+/*   Updated: 2019/06/27 15:42:57 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	print_char_str(char c, size_t nb)
 		exit_(NULL);
 	while (i--)
 		buff[i] = c;
-	write(1, buff, nb);
+	write(0, buff, nb);
 	free(buff);
 }

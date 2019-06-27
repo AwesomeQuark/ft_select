@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 09:15:05 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/25 18:16:09 by conoel           ###   ########.fr       */
+/*   Updated: 2019/06/27 15:22:22 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init(t_flag *all, int start, int fd)
 	all->zero = 0;
 }
 
-int	if_norme(char s, int type)
+int		if_norme(char s, int type)
 {
 	if (type == 1)
 	{
@@ -48,7 +48,7 @@ int	if_norme(char s, int type)
 	}
 	if (type == 2)
 	{
-		if (s == 'd' || s == 'i' || s == 'o' || s == 'u' || s == 'x' ||s == 'X'
+		if (s == 'd' || s == 'i' || s == 'o' || s == 'u' || s == 'x' || s == 'X'
 		|| s == 'c' || s == 's' || s == 'p' || s == '%' || s == 'b' || s == 'O'
 		|| s == 'F' || s == 'U' || s == 'm' || s == 'n')
 			return (1);
@@ -81,7 +81,7 @@ void	parse_flags(t_flag *all, char *str)
 	all->precision < -1 && all->type == 's' ? all->precision *= -1 : 0;
 }
 
-int	get_next_arg(t_flag *all, char *str)
+int		get_next_arg(t_flag *all, char *str)
 {
 	init(all, 0, 0);
 	parse_flags(all, str);
@@ -99,7 +99,7 @@ int	get_next_arg(t_flag *all, char *str)
 	return (0);
 }
 
-int			ft_printf(const char *str, ...)
+int		ft_printf(const char *str, ...)
 {
 	t_flag		all;
 

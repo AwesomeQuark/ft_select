@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:30:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/06/07 15:15:41 by conoel           ###   ########.fr       */
+/*   Updated: 2019/06/27 15:29:24 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,12 @@ void	handle_up(t_infos *infos)
 {
 	if (infos->y != 0)
 		infos->y--;
-	else if (infos->x != 0)
-	{
-		if (infos->nb_args % infos->max_x < infos->x)
-			infos->y = infos->max_y - 1;
-		else
-			infos->y = infos->max_y;
-		infos->x--;
-	}
 }
 
 void	handle_down(t_infos *infos)
 {
-	if (infos->y != infos->max_y && !(infos->y == infos->max_y - 1
-		&& infos->x >= infos->nb_args % infos->max_x))
+	if (infos->y != infos->max_y)
 		infos->y++;
-	else if (infos->current_index != infos->nb_args % infos->max_x - 1)
-	{
-		infos->y = 0;
-		infos->x++;
-	}
 }
 
 void	handle_del(t_infos *infos)

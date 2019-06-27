@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 14:27:18 by conoel            #+#    #+#             */
-/*   Updated: 2019/06/27 01:41:41 by conoel           ###   ########.fr       */
+/*   Updated: 2019/06/27 15:30:51 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void		resize(int no)
 {
 	(void)no;
 	display(&g_infos);
-	signal(no, resize);
 }
 
 void		signal_wrapper(void)

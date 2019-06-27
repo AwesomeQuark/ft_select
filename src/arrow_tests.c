@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:45:34 by conoel            #+#    #+#             */
-/*   Updated: 2019/06/27 01:40:31 by conoel           ###   ########.fr       */
+/*   Updated: 2019/06/27 15:22:52 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,5 @@ int	test_del(char *buff, t_infos *infos)
 		|| (buff[0] == 27 && buff[1] == 91 && buff[2] == 51))
 		return (1);
 	else
-	
 		return (0);
 }
-

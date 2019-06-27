@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 10:46:42 by conoel            #+#    #+#             */
-/*   Updated: 2019/06/26 16:31:31 by conoel           ###   ########.fr       */
+/*   Updated: 2019/06/27 15:47:29 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void		beauty_print_args(t_infos *infos)
 	while (g_argv[i])
 	{
 		if (infos->selected[i] == 1 && i == infos->current_index)
-			ft_dprintf(0, "%s%s<%s>%s","\033[41m", BLACK, g_argv[i], DEF);
+			ft_dprintf(0, "%s%s<%s>%s", "\033[41m", BLACK, g_argv[i], DEF);
 		else if (infos->selected[i] == 1)
 			ft_dprintf(0, "%s\033[44m%s%s", BLACK, g_argv[i], DEF);
 		else if (i == infos->current_index)
@@ -50,8 +50,8 @@ static void		beauty_print_args(t_infos *infos)
 
 static void		beauty(t_infos *infos)
 {
-	ft_putstr_fd(" FT # Tab : Enable search\n SE # Esc : Quit\n LE # Space : Add\
-to selection\n CT # Enter : Validate selection\n-------\n", 0);
+	ft_putstr_fd(" FT # Tab : Enable search\n SE # Esc : Quit\n LE # Space :\
+Add to selection\n CT # Enter : Validate selection\n-------\n", 0);
 	beauty_print_args(infos);
 	if (modulo(infos->nb_args, infos->max_x) != 0)
 		write(0, "\n", 1);
@@ -91,11 +91,11 @@ static void		classic(t_infos *infos)
 void			display(t_infos *infos)
 {
 	struct winsize w;
-	
+
 	ioctl(0, TIOCGWINSZ, &w);
 	init_infos(infos, 0);
-	tputs(tgetstr("cl", NULL), 1, ft_putchar_stdout);
-	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, ft_putchar_stdout);
+	tputs(tgetstr("cl", NULL), 0, ft_putchar_stdout);
+	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 0, ft_putchar_stdout);
 	if (w.ws_row > infos->max_y + 7 && infos->max_x > 0)
 	{
 		if (infos->visual == 0)
@@ -104,5 +104,5 @@ void			display(t_infos *infos)
 			beauty(infos);
 	}
 	else
-		ft_printf("Window too small :(\n");
+		ft_dprintf(0, "Window too small :(\n");
 }
